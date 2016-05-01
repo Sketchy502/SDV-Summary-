@@ -46,37 +46,31 @@ def getPlant(img, location, colour, days, T, defaultSize=(16, 16), objectSize=(1
 def loadAssets():
     assets = {
                 'base': {
-                            'spring': Image.open('./assets/bases/spring_base.png'),
-                            'summer': Image.open('./assets/bases/summer_base.png'),
-                            'fall': Image.open('./assets/bases/fall_base.png'),
-                            'winter': Image.open('./assets/bases/winter_base.png')
+                            'spring': {
+                                'Back': Image.open('./assets/bases/spring/Back.png'),
+                                'Buildings': Image.open('./assets/bases/spring/Buildings.png'),
+                                'Front': Image.open('./assets/bases/spring/Front.png'),
+                                'AlwaysFront': Image.open('./assets/bases/spring/AlwaysFront.png'),
+                            },
+                            'summer': {
+                                'Back': Image.open('./assets/bases/spring/Back.png'),
+                                'Buildings': Image.open('./assets/bases/spring/Buildings.png'),
+                                'Front': Image.open('./assets/bases/spring/Front.png'),
+                                'AlwaysFront': Image.open('./assets/bases/spring/AlwaysFront.png'),
+                            },
+                            'fall': {
+                                'Back': Image.open('./assets/bases/fall/Back.png'),
+                                'Buildings': Image.open('./assets/bases/fall/Buildings.png'),
+                                'Front': Image.open('./assets/bases/fall/Front.png'),
+                                'AlwaysFront': Image.open('./assets/bases/fall/AlwaysFront.png'),
+                            },
+                            'winter': {
+                                'Back': Image.open('./assets/bases/spring/Back.png'),
+                                'Buildings': Image.open('./assets/bases/spring/Buildings.png'),
+                                'Front': Image.open('./assets/bases/spring/Front.png'),
+                                'AlwaysFront': Image.open('./assets/bases/spring/AlwaysFront.png'),
+                            },
                           },
-                'overlays': {
-                                'spring': [
-                                                Image.open('./assets/bases/spring_overlay_0.png'),
-                                                Image.open('./assets/bases/spring_overlay_1.png'),
-                                                Image.open('./assets/bases/spring_overlay_2.png'),
-                                                Image.open('./assets/bases/spring_overlay_3.png')
-                                            ],
-                                'summer': [
-                                                Image.open('./assets/bases/summer_overlay_0.png'),
-                                                Image.open('./assets/bases/summer_overlay_1.png'),
-                                                Image.open('./assets/bases/summer_overlay_2.png'),
-                                                Image.open('./assets/bases/summer_overlay_3.png')
-                                            ],
-                                'fall': [
-                                                Image.open('./assets/bases/fall_overlay_0.png'),
-                                                Image.open('./assets/bases/fall_overlay_1.png'),
-                                                Image.open('./assets/bases/fall_overlay_2.png'),
-                                                Image.open('./assets/bases/fall_overlay_3.png')
-                                            ],
-                                'winter': [
-                                                Image.open('./assets/bases/winter_overlay_0.png'),
-                                                Image.open('./assets/bases/winter_overlay_1.png'),
-                                                Image.open('./assets/bases/winter_overlay_2.png'),
-                                                Image.open('./assets/bases/winter_overlay_3.png')
-                                            ]
-                               },
                 'objects': Image.open('./assets/farm/objects.png'),
                 'craftables': Image.open('./assets/farm/craftables.png'),
                 'flooring': Image.open('./assets/farm/flooring.png'),
@@ -142,17 +136,11 @@ def generateFarm(season, farm, assets=None):
         assets = loadAssets()
 
     farm_base = Image.new('RGBA', (1280, 1040))
-    farm_base.paste(assets['base'][season], (0, 0))
-    
+    farm_base.paste(assets['base'][season]["Back"], (0, 0))
+    farm_base.paste(assets['base'][season]["Buildings"], (0, 0), mask=assets['base'][season]["Buildings"])
+
     # seed the random number generator so we render the same way every time
     random.seed(0)
-
-    farm['overlays'] = [
-                        sprite('overlay', 0, 14, 0, 0, 0, 0, 0, 0, 0),
-                        sprite('overlay', 0, 16, 0, 0, 0, 1, 0, 0, 0),
-                        sprite('overlay', 0, 23, 0, 0, 0, 2, 0, 0, 0),
-                        sprite('overlay', 0, 63, 0, 0, 0, 3, 0, 0, 0)
-                        ]
 
     farm = sorted(chain.from_iterable(farm.values()), key=lambda x: x.y)
     floor_types = ['Flooring', 'HoeDirt']
@@ -331,12 +319,6 @@ def generateFarm(season, farm, assets=None):
             except Exception as e:
                 print(e)
 
-        if item.name == 'overlay':
-            try:
-                farm_base.paste(assets['overlays'][season][item.type], (0, 0), assets['overlays'][season][item.type])
-            except Exception as e:
-                print(e)
-
     for item in gates:
         try:
                 offsetx = 0
@@ -356,6 +338,9 @@ def generateFarm(season, farm, assets=None):
                 farm_base.paste(gate_img, (item.x * 16 + offsetx, item.y * 16 - offsety), gate_img)
         except Exception as e:
                 print(e)
+
+    farm_base.paste(assets['base'][season]["Front"], (0, 0), mask=assets['base'][season]["Front"])
+    farm_base.paste(assets['base'][season]["AlwaysFront"], (0, 0), mask=assets['base'][season]["AlwaysFront"])
 
     farm_base = farm_base.convert('RGBA').convert('P', palette=Image.ADAPTIVE, colors=255)
     return farm_base
