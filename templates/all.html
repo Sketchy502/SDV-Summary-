@@ -3,41 +3,41 @@
 {%block bodycontent %}
 {% include "titlebar.html" %}
 <div class="row center-block panel">
-	<div class="interiorpanel">
-		<h2><a href="/all" class="titlelink">All farms</a></h2>
-		{% include "recents.html" %}
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<p>
-				{% if request.args.get('p')!=None and request.args.get('p')|int>1 %}
-				<a href="/all?p=0">newest</a>
-				{% else %}
-				<span class="text-muted">newest</span>
-				{% endif %}
-				{% if request.args.get('p')!=None and request.args.get('p')|int>0 %}
-				<a href="/all?p={{request.args.get('p')|int-1}}">previous</a>
-				{% else %}
-				<span class="text-muted">previous</span>
-				{% endif %}
-				{% if request.args.get('p')!=None %}
-					{{request.args.get('p')}}
-				{%else%}
-					0
-				{%endif%}
-				{% if offset + recents.posts|length < recents.total %}
-				<a href="/all?p={%if request.args.get('p')!= None%}{{request.args.get('p')|int+1}}{%else%}{{1}}{%endif%}">next</a>
-				{% else %}
-				<span class="text-muted">next</span>
-				{% endif %}
-				{% if offset + (recents.posts|length * 2) < recents.total %}
-				<a href="/all?p={{(recents.total/recents.posts|length)|round(0,'ceil')|int - 1}}">oldest</a>
-				{% else %}
-				<span class="text-muted">oldest</span>
-				{% endif %}
-				</p>
-			</div>
-		</div>
-	</div>
+    <div class="interiorpanel">
+        <h2><a href="/all" class="titlelink">All farms</a></h2>
+        {% include "recents.html" %}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+                {% if request.args.get('p')!=None and request.args.get('p')|int>1 %}
+                <a href="/all?p=0">newest</a>
+                {% else %}
+                <span class="text-muted">newest</span>
+                {% endif %}
+                {% if request.args.get('p')!=None and request.args.get('p')|int>0 %}
+                <a href="/all?p={{request.args.get('p')|int-1}}">previous</a>
+                {% else %}
+                <span class="text-muted">previous</span>
+                {% endif %}
+                {% if request.args.get('p')!=None %}
+                    {{request.args.get('p')}}
+                {%else%}
+                    0
+                {%endif%}
+                {% if offset + recents.posts|length < recents.total %}
+                <a href="/all?p={%if request.args.get('p')!= None%}{{request.args.get('p')|int+1}}{%else%}{{1}}{%endif%}">next</a>
+                {% else %}
+                <span class="text-muted">next</span>
+                {% endif %}
+                {% if offset + (recents.posts|length * 2) < recents.total %}
+                <a href="/all?p={{(recents.total/recents.posts|length)|round(0,'ceil')|int - 1}}">oldest</a>
+                {% else %}
+                <span class="text-muted">oldest</span>
+                {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

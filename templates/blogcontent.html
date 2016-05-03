@@ -1,22 +1,22 @@
 {% if blogposts.posts %}
-	<div class="row">
-			{% for blog in blogposts.posts %}
-				<div id="entry-{{blog.0}}" class="col-md-12">
-					<div class="row">
-						<div class="col-md-12">
-							<h4><a href="/blog/{{blog.0}}" class="titlelink">{{blog.3}}</a><br><small>by {{blog.2}} at {{blog.1}}</small></h4>
-						</div>
-					</div>
-					<div class="row col-md-12">
-					{% set blogcontent = (blog.4|safe).split("\r\n\r\n") %}
-					<p class="blogpost">{{blogcontent.0}}</p>
-					{% if full %}
-						{% for content in blogcontent[1:] %}
-							<p class="blogpost">{{content}}</p>
-						{% endfor %}
-					{% endif %}
-					</div>
-				</div>
-			{% endfor %}
-		</div>
+    <div class="row">
+            {% for blog in blogposts.posts %}
+                <div id="entry-{{blog.0}}" class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><a href="/blog/{{blog.0}}" class="titlelink">{{blog.3}}</a><br><small>by {{blog.2}} at {{blog.1}}</small></h4>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                    {% set blogcontent = (blog.4|safe).split("\r\n\r\n") %}
+                    <p class="blogpost">{{blogcontent.0}}</p>
+                    {% if full %}
+                        {% for content in blogcontent[1:] %}
+                            <p class="blogpost">{{content}}</p>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 {% endif %}

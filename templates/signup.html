@@ -2,43 +2,43 @@
 {% block title %}Sign up - {{super()}}{% endblock %}
 {% block bodycontent %}
 {% include "titlebar.html" %}
-			<div class="row center-block panel">
-				<div class="interiorpanel">
-					<div class="col-md-12">
-						<h2>Sign up</h2>
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-								<p>Registration allows enabling of savegame sharing, quick imgur upload, and creation and curation of farm series.</p>
-								<p><a href="{{url_for('login')}}">Already got an account? Sign in!</a></p>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
-								<div>
-									<form action="" method="post">
-										<label for="uploadFarm" class="sr-only">Register a user account on upload.farm</label>
+            <div class="row center-block panel">
+                <div class="interiorpanel">
+                    <div class="col-md-12">
+                        <h2>Sign up</h2>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                <p>Registration allows enabling of savegame sharing, quick imgur upload, and creation and curation of farm series.</p>
+                                <p><a href="{{url_for('login')}}">Already got an account? Sign in!</a></p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                                <div>
+                                    <form action="" method="post">
+                                        <label for="uploadFarm" class="sr-only">Register a user account on upload.farm</label>
 
-										<div class="form-group">
-											<label for="email" class="sr-only">Email address</label>
-											<input class="form-control input-lg" type="text" id="email" name="email" value="{{request.form['email']}}" placeholder="email">
-										</div>
+                                        <div class="form-group">
+                                            <label for="email" class="sr-only">Email address</label>
+                                            <input class="form-control input-lg" type="text" id="email" name="email" value="{{request.form['email']}}" placeholder="email">
+                                        </div>
 
-										<div class="form-group">
-											<label for="password" class="sr-only">Password</label>
-											<input class="form-control input-lg" id="password" type="password" name="password" value="" placeholder="password"  pattern=".{{"{"}}{{config.PASSWORD_MIN_LENGTH}},}" required title="Passcode must be at least {{config.PASSWORD_MIN_LENGTH}} characters long!">
-										</div>
+                                        <div class="form-group">
+                                            <label for="password" class="sr-only">Password</label>
+                                            <input class="form-control input-lg" id="password" type="password" name="password" value="" placeholder="password"  pattern=".{{"{"}}{{config.PASSWORD_MIN_LENGTH}},}" required title="Passcode must be at least {{config.PASSWORD_MIN_LENGTH}} characters long!">
+                                        </div>
 
-										<div class="form-group">
-										{{recaptcha}}
-										</div>
+                                        <div class="form-group">
+                                        {{recaptcha}}
+                                        </div>
 
-										<button class="btn btn-primary btn-lg" type="submit" onclick="ga('send', 'event', 'userRegister', 'register');" describedby="helpBlock">Sign up!</button>
-									</form>
-								</div>
-							</div>
-						</div>
-						{% if error %}
-							<p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
-						{% endif %}
-					</div>
-				</div>
-			</div>
+                                        <button class="btn btn-primary btn-lg" type="submit" onclick="ga('send', 'event', 'userRegister', 'register');" describedby="helpBlock">Sign up!</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% if error %}
+                            <p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 {% endblock %}

@@ -1,181 +1,181 @@
 {% extends "base.html" %}
 {% block title %}Admin panel{% endblock %}
 {% block header %}
-	{{ super() }}
+    {{ super() }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script>
-		function toggleDisplayed(id) {
-			if ((document.getElementById(id).style.display == 'none') || (document.getElementById(id).style.display == '')) {
-			document.getElementById(id).style.display='block';
-			}
-			else {
-				document.getElementById(id).style.display='none';
-			}
-		}
-		function showhideBlog(id) {
-			var elementid = 'sh-'.concat(id)
-			var live = document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML == 'show'
-			$.post('/admin',{blog:'update', id: id, live:live},function(result) {
-				if (result=='Success') {
-					if (live) {
-						document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML = 'hide';
-						$(document.getElementById('entry-'.concat(id))).fadeTo(400,1.0);
-					}
-					else {
-						document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML = 'show';
-						$(document.getElementById('entry-'.concat(id))).fadeTo(400,0.5);
-				} }
-				else {
-					addError();	
-				} }
-			);
-		}
-		function deleteBlog(id) {
-			var elementid = 'd-'.concat(id)
-			var response = confirm("Really delete this?")
-			if (response == true) {
-				$.post('/admin',{blog:'delete', id: id},function(result) {
-					if (result=='Success') {
-						$(document.getElementById('entry-'.concat(id))).slideUp();
-					}
-					else {
-					addError();	
-					}
-				});
-			};
-		}
-		function addError() {
-			document.getElementById('topbox').innerHTML = '<p class="text-danger text-center"><strong>Error:</strong> You are not logged in!</p>';
-			$('html, body').animate({ scrollTop: 0 }, 'fast');
-		}
-		$(document).ready(function() {
-			$(".clickable").click(function() {
-				var splitstr = $(this).attr('id').split('-')
-				if ( splitstr[0] == 'sh' ) {
-					showhideBlog(splitstr[1]);
-				}
-				else if ( splitstr[0] == 'd' ) {
-					deleteBlog(splitstr[1]);
-				}
-				else {
-				};
-			});
-		})
-	</script>
+        <script>
+        function toggleDisplayed(id) {
+            if ((document.getElementById(id).style.display == 'none') || (document.getElementById(id).style.display == '')) {
+            document.getElementById(id).style.display='block';
+            }
+            else {
+                document.getElementById(id).style.display='none';
+            }
+        }
+        function showhideBlog(id) {
+            var elementid = 'sh-'.concat(id)
+            var live = document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML == 'show'
+            $.post('/admin',{blog:'update', id: id, live:live},function(result) {
+                if (result=='Success') {
+                    if (live) {
+                        document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML = 'hide';
+                        $(document.getElementById('entry-'.concat(id))).fadeTo(400,1.0);
+                    }
+                    else {
+                        document.getElementById(elementid).getElementsByTagName("sub")[0].innerHTML = 'show';
+                        $(document.getElementById('entry-'.concat(id))).fadeTo(400,0.5);
+                } }
+                else {
+                    addError();
+                } }
+            );
+        }
+        function deleteBlog(id) {
+            var elementid = 'd-'.concat(id)
+            var response = confirm("Really delete this?")
+            if (response == true) {
+                $.post('/admin',{blog:'delete', id: id},function(result) {
+                    if (result=='Success') {
+                        $(document.getElementById('entry-'.concat(id))).slideUp();
+                    }
+                    else {
+                    addError();
+                    }
+                });
+            };
+        }
+        function addError() {
+            document.getElementById('topbox').innerHTML = '<p class="text-danger text-center"><strong>Error:</strong> You are not logged in!</p>';
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+        }
+        $(document).ready(function() {
+            $(".clickable").click(function() {
+                var splitstr = $(this).attr('id').split('-')
+                if ( splitstr[0] == 'sh' ) {
+                    showhideBlog(splitstr[1]);
+                }
+                else if ( splitstr[0] == 'd' ) {
+                    deleteBlog(splitstr[1]);
+                }
+                else {
+                };
+            });
+        })
+    </script>
 {% endblock %}
 {% block bodycontent %}
-			<div class="row panel">
-				<div class="interiorpanel">
-					<div class="col-md-8">
-						<h1>Welcome, {{ session.admin }}</h1>
-						<p class="text-left"><a href="/">Front page</a> <a href="/lo">Log out</a></p>
-					</div>
-					<div class="col-md-4 text-right" id="topbox">
-						{% if error %}
-							<p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
-						{% endif %}
-					</div>
-					{% with messages = get_flashed_messages() %}
-						{% if messages %}
-							<div class="row">
-							{% for message in messages %}
-								<p>{{ message }}</p>
-							{% endfor %}
-							</div>
-						{% endif %}
-					{% endwith %}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-sm-12 panel">
-					<div class="interiorpanel">
-						<div class="adminpanelitem">
-							<div class="row">
-								<div class="col-md-11">
-									<h3>Savefile access</h3>
-								</div>
-								<div class="col-md-1 text-right">
-									<span class="caret" onclick="toggleDisplayed('entries')"></span>
-								</div>
-							</div>
+            <div class="row panel">
+                <div class="interiorpanel">
+                    <div class="col-md-8">
+                        <h1>Welcome, {{ session.admin }}</h1>
+                        <p class="text-left"><a href="/">Front page</a> <a href="/lo">Log out</a></p>
+                    </div>
+                    <div class="col-md-4 text-right" id="topbox">
+                        {% if error %}
+                            <p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
+                        {% endif %}
+                    </div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="row">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 panel">
+                    <div class="interiorpanel">
+                        <div class="adminpanelitem">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h3>Savefile access</h3>
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    <span class="caret" onclick="toggleDisplayed('entries')"></span>
+                                </div>
+                            </div>
 
-							<div id="entries">
-								<ol>
-								{% for entry in entries %}
-									<li><a href="dl/{{ entry.0 }}">download</a>|<a href="{{entry.0}}">profile</a>|{{entry.1}}, {{entry.2}} Farm, {{entry.3}}</li>
-								{% endfor %}
-								</ol>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12 panel">
-					<div class="interiorpanel">
-						<div class="row">
-							<div class="col-md-12">
-								<h3>Add blog post</h3>
-								<form enctype="multipart/form-data" action="" method="post" id="blogform">
-									<div class="row">
-										<div class="col-md-12">
-										<input class="form-control input-lg" type="text" name="blogtitle" value="{%if returned_blog_data%}{{returned_blog_data.blogtitle}}{%endif%}" placeholder="title">
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12">
-										<textarea class="form-control input-lg" name="content" placeholder="content">{%if returned_blog_data%}{{returned_blog_data.content}}{%endif%}</textarea>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-8 col-sm-8">
-										  	<div class="checkbox">
-												<label>
-													<input type="checkbox" name="live" {%if returned_blog_data.checked%}checked{%endif%}> Post visible to users?
-												</label>
-											</div>
-										</div>
-										<div class="col-md-4 col-sm-4 text-right">
-											<input class="btn btn-primary btn-lg" type="submit" name="blog" value="Post">
-										</div>
-									</div>
-								</form>
-							</div>
-							<p class="text-success text-center">HTML is allowed in blog entries.<br>Two consecutive newlines = end of preview text.</p>
-						</div>
-						{% if blogposts.posts %}
-							<div class="row">
-								<div class="col-md-12">
-									<div class="adminpanelitem">
-									<h3>Existing blog posts</h3>
-									{% for blog in blogposts.posts %}
-										<div id="entry-{{blog.0}}" class="col-md-12 {%if not blog.5%}hiddenblog{%endif%}">
-											<div class="row">
-												<div class="col-md-11">
-													<h4>{{blog.3}} <small>by {{blog.2}} at {{blog.1}}</small></h4>
-												</div>
-												<div class="col-md-1 text-right">
-													<span class="clickable" id="sh-{{blog.0}}">
-														<sub>{% if blog.5 %}hide{% else %}show{% endif %}</sub>
-													</span>	
-													<span class="clickable" id="d-{{blog.0}}">
-														<sub>delete</sub>
-													</span>
-												</div>
-											</div>
-											<div class="row col-md-12">
-												{% set blogcontent = (blog.4|safe).split("\r\n\r\n") %}
-													<p class="blogpost">{{blogcontent.0}}</p>
-												{% for content in blogcontent[1:] %}
-													<p class="blogpost">{{content}}</p>
-												{% endfor %}
-											</div>
-										</div>
-									{% endfor %}
-									</div>
-								</div>
-							</div>
-						{% endif %}
+                            <div id="entries">
+                                <ol>
+                                {% for entry in entries %}
+                                    <li><a href="dl/{{ entry.0 }}">download</a>|<a href="{{entry.0}}">profile</a>|{{entry.1}}, {{entry.2}} Farm, {{entry.3}}</li>
+                                {% endfor %}
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 panel">
+                    <div class="interiorpanel">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Add blog post</h3>
+                                <form enctype="multipart/form-data" action="" method="post" id="blogform">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <input class="form-control input-lg" type="text" name="blogtitle" value="{%if returned_blog_data%}{{returned_blog_data.blogtitle}}{%endif%}" placeholder="title">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <textarea class="form-control input-lg" name="content" placeholder="content">{%if returned_blog_data%}{{returned_blog_data.content}}{%endif%}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-8">
+                                              <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="live" {%if returned_blog_data.checked%}checked{%endif%}> Post visible to users?
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 text-right">
+                                            <input class="btn btn-primary btn-lg" type="submit" name="blog" value="Post">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <p class="text-success text-center">HTML is allowed in blog entries.<br>Two consecutive newlines = end of preview text.</p>
+                        </div>
+                        {% if blogposts.posts %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="adminpanelitem">
+                                    <h3>Existing blog posts</h3>
+                                    {% for blog in blogposts.posts %}
+                                        <div id="entry-{{blog.0}}" class="col-md-12 {%if not blog.5%}hiddenblog{%endif%}">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <h4>{{blog.3}} <small>by {{blog.2}} at {{blog.1}}</small></h4>
+                                                </div>
+                                                <div class="col-md-1 text-right">
+                                                    <span class="clickable" id="sh-{{blog.0}}">
+                                                        <sub>{% if blog.5 %}hide{% else %}show{% endif %}</sub>
+                                                    </span>
+                                                    <span class="clickable" id="d-{{blog.0}}">
+                                                        <sub>delete</sub>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row col-md-12">
+                                                {% set blogcontent = (blog.4|safe).split("\r\n\r\n") %}
+                                                    <p class="blogpost">{{blogcontent.0}}</p>
+                                                {% for content in blogcontent[1:] %}
+                                                    <p class="blogpost">{{content}}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
 
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
