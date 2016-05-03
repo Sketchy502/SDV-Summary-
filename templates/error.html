@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block bodycontent %}
 {% include "titlebar.html" %}
-			<div class="row panel">
-				<div class="col-md-12">
-					<div class="interiorpanel">
-					<h1 class="text-center">Error!</h1>
-					{% if error %}
-						<p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
-					{% endif %}
-					</div>
-				</div>
-			</div>
+            <div class="row panel">
+                <div class="col-md-12">
+                    <div class="interiorpanel">
+                    <h1 class="text-center">Error!</h1>
+                    {% if error %}
+                        <p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
 {% endblock %}

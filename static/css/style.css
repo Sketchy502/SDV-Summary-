@@ -1,547 +1,547 @@
 body {
-	background: #84a4f0 url(bg.png) no-repeat fixed center;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-attachment: fixed; 
-	padding-top: 20px;
-	line-height: 2em;
+    background: #84a4f0 url(bg.png) no-repeat fixed center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+    padding-top: 20px;
+    line-height: 2em;
 }
 
 h1, h2, h3, h4 {
-	font-family: 'Architects Daughter', cursive;
-	/*font-size: 32px;*/
-	margin-top: 0px;
+    font-family: 'Architects Daughter', cursive;
+    /*font-size: 32px;*/
+    margin-top: 0px;
 }
 
 h4 {
-	font-size:24px;
+    font-size:24px;
 }
 
 h3 {
-	font-size: 32px;
+    font-size: 32px;
 }
 
 h2 {
-	font-size: 44px;
+    font-size: 44px;
 }
 
 h1 {
-	font-size: 56px;
+    font-size: 56px;
 }
 
 .panel, .tooltip, .popover {
-	padding:5px;
-	margin-bottom: 0px;
-	background: none;
-	box-shadow: none;
+    padding:5px;
+    margin-bottom: 0px;
+    background: none;
+    box-shadow: none;
 }
 
 .popover {
-	border: none;
-	padding: 0px;
+    border: none;
+    padding: 0px;
 }
 
 .popover.right>.arrow {
-	display: none;
+    display: none;
 }
 .popover.right {
-	margin-left: 0px;
+    margin-left: 0px;
 }
 
 .tooltip.in {
-	opacity: 1;
-	filter: alpha(opacity=100);
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
 .interiorpanel {
-	border-style: solid;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	border-width: 12px 12px 12px 12px;
-	-moz-border-image: url(textBox.png) 16 16 16 16 stretch;
-	-webkit-border-image: url(textBox.png) 16 16 16 16 stretch;
-	-o-border-image: url(textBox.png) 16 16 16 16 stretch;
-	border-image: url(textBox.png) 16 16 16 16 fill stretch;
-	box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2); 
-	padding-bottom: 15px;
-	overflow:hidden;
-	padding: 15px;
-	border-radius: 30px;
+    border-style: solid;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    border-width: 12px 12px 12px 12px;
+    -moz-border-image: url(textBox.png) 16 16 16 16 stretch;
+    -webkit-border-image: url(textBox.png) 16 16 16 16 stretch;
+    -o-border-image: url(textBox.png) 16 16 16 16 stretch;
+    border-image: url(textBox.png) 16 16 16 16 fill stretch;
+    box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2);
+    padding-bottom: 15px;
+    overflow:hidden;
+    padding: 15px;
+    border-radius: 30px;
 }
 
 .bulletinpanel {
-	border-style: solid;
-	border-width: 16px 16px 16px 16px;
-	-moz-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
-	-webkit-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
-	-o-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
-	border-image: url(bulletin/paper.png) 32 32 32 32 fill stretch;
-	/*box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2); */
-	padding-bottom: 15px;
-	overflow:hidden;
-	padding: 0px;
-	/*border-radius: 30px;*/
+    border-style: solid;
+    border-width: 16px 16px 16px 16px;
+    -moz-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
+    -webkit-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
+    -o-border-image: url(bulletin/paper.png) 30 30 30 30 stretch;
+    border-image: url(bulletin/paper.png) 32 32 32 32 fill stretch;
+    /*box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2); */
+    padding-bottom: 15px;
+    overflow:hidden;
+    padding: 0px;
+    /*border-radius: 30px;*/
 }
 
 .bulletinclose {
-	position:absolute;
-	top: 5px;
-	height:auto;
-	right: 0px;
-	width: 2em;
-	height: 2em;
-	background-color: rgba(0,0,0,0.0);
-	padding: 0px;
-	color: #FFFFFF;
-	overflow:hidden;
+    position:absolute;
+    top: 5px;
+    height:auto;
+    right: 0px;
+    width: 2em;
+    height: 2em;
+    background-color: rgba(0,0,0,0.0);
+    padding: 0px;
+    color: #FFFFFF;
+    overflow:hidden;
 }
 
 .tooltip-inner, .popover-content, .popover-title {
-	border-style: solid;
-	border-width: 12px 12px 12px 12px;
-	-moz-border-image: url(popBox.png) 16 16 16 16 stretch;
-	-webkit-border-image: url(popBox.png) 16 16 16 16 stretch;
-	-o-border-image: url(popBox.png) 16 16 16 16 stretch;
-	border-image: url(popBox.png) 16 16 16 16 fill stretch;
-	box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2); 
-	/*padding-bottom: 15px;*/
-	overflow:hidden;
-	padding: 4px;
-	border-radius: 30px;
+    border-style: solid;
+    border-width: 12px 12px 12px 12px;
+    -moz-border-image: url(popBox.png) 16 16 16 16 stretch;
+    -webkit-border-image: url(popBox.png) 16 16 16 16 stretch;
+    -o-border-image: url(popBox.png) 16 16 16 16 stretch;
+    border-image: url(popBox.png) 16 16 16 16 fill stretch;
+    box-shadow: -5px 5px 10px 5px rgba(0,0,0,0.2);
+    /*padding-bottom: 15px;*/
+    overflow:hidden;
+    padding: 4px;
+    border-radius: 30px;
 }
 
 .popover-content, .tooltip-inner {
-	border-top-width: 0px;
-	padding: 4px;
-	-moz-border-image-source: url(textBox.png);
-	-webkit-border-image-source: url(textBox.png);
-	-o-border-image-source: url(textBox.png);
-	border-image-source: url(textBox.png);
+    border-top-width: 0px;
+    padding: 4px;
+    -moz-border-image-source: url(textBox.png);
+    -webkit-border-image-source: url(textBox.png);
+    -o-border-image-source: url(textBox.png);
+    border-image-source: url(textBox.png);
 }
 
 .tooltip-inner {
-	border-top-width: 10px;
-	max-width: 300px;
+    border-top-width: 10px;
+    max-width: 300px;
 }
 
 .pip {
-	box-shadow: -3px 3px 1px #555555;
+    box-shadow: -3px 3px 1px #555555;
 }
 
 .pipdiv {
-	display: inline;
-	font-size: 15px;
+    display: inline;
+    font-size: 15px;
 }
 
 .pipdivhalf {
-	float:left;
-	padding-left:5px;
-	min-width:30px;
+    float:left;
+    padding-left:5px;
+    min-width:30px;
 }
 
 p, li, dl, .pixeltext, .tooltip-inner, .popover-content, .popover-title {
-	line-height: 1;
-	font-family: 'VT323';
-	font-size: 20pt;
-	margin: 0;
-	color: #333;
+    line-height: 1;
+    font-family: 'VT323';
+    font-size: 20pt;
+    margin: 0;
+    color: #333;
 }
 
 .help-block, .smallpixeltext {
-	font-family: 'VT323';
-	font-size: 16pt;
+    font-family: 'VT323';
+    font-size: 16pt;
 }
 
 dt, dd {
-	line-height: 1;
-	font-weight: normal;
+    line-height: 1;
+    font-weight: normal;
 }
 
 .avatarPanel {
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	width: 200px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    width: 200px;
 
-	border-style: solid;
-	border-width: 21px 21px 21px 21px;
-	-moz-border-image: url(frame.png) 28 32 28 32 stretch;
-	-webkit-border-image: url(frame.png) 28 32 28 32 stretch;
-	-o-border-image: url(frame.png) 28 32 28 32 stretch;
-	border-image: url(frame.png) 28 32 28 32 stretch;
-	z-index: 2;
+    border-style: solid;
+    border-width: 21px 21px 21px 21px;
+    -moz-border-image: url(frame.png) 28 32 28 32 stretch;
+    -webkit-border-image: url(frame.png) 28 32 28 32 stretch;
+    -o-border-image: url(frame.png) 28 32 28 32 stretch;
+    border-image: url(frame.png) 28 32 28 32 stretch;
+    z-index: 2;
 }
 
 .playerAvatar {
-	width: calc(100% - 1px);
-	padding: 20px;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	position: relative;
-	top: 0;
-	background-color: #ffffff;
+    width: calc(100% - 1px);
+    padding: 20px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    position: relative;
+    top: 0;
+    background-color: #ffffff;
 }
 
 .portraitPanel {
-	display: inline-block;
-	border-style: solid;
-	border-width: 20px 21px 21px 20px;
-	-moz-border-image: url(frame.png) 30 32 32 31 stretch;
-	-webkit-border-image: url(frame.png) 30 32 32 31 stretch;
-	-o-border-image: url(frame.png) 30 32 32 31 stretch;
-	border-image: url(frame.png) 30 32 32 31 fill stretch;*/
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	width: 200px;
+    display: inline-block;
+    border-style: solid;
+    border-width: 20px 21px 21px 20px;
+    -moz-border-image: url(frame.png) 30 32 32 31 stretch;
+    -webkit-border-image: url(frame.png) 30 32 32 31 stretch;
+    -o-border-image: url(frame.png) 30 32 32 31 stretch;
+    border-image: url(frame.png) 30 32 32 31 fill stretch;*/
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    width: 200px;
 
-	border-style: solid;
-	border-width: 21px 21px 21px 21px;
-	-moz-border-image: url(frame.png) 30 30 30 30 stretch;
-	-webkit-border-image: url(frame.png) 30 30 30 30 stretch;
-	-o-border-image: url(frame.png) 30 30 30 30 stretch;
-	border-image: url(frame.png) 30 30 30 30 stretch;
-	z-index: 2;
+    border-style: solid;
+    border-width: 21px 21px 21px 21px;
+    -moz-border-image: url(frame.png) 30 30 30 30 stretch;
+    -webkit-border-image: url(frame.png) 30 30 30 30 stretch;
+    -o-border-image: url(frame.png) 30 30 30 30 stretch;
+    border-image: url(frame.png) 30 30 30 30 stretch;
+    z-index: 2;
 }
 
 .container {
-	padding-left: 0px;
-	padding-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .playerPortrait {
-/*	width: calc(100% - 1px);
-	z-index: 100;
-	image-rendering: pixelated;
-	padding: 20px;
-	background-color: #ffedd1;*/
-	width: calc(100% - 1px);
-	padding: 20px;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	position: relative;
-	top: 0;
-	background-color: #ffffff;
+/*    width: calc(100% - 1px);
+    z-index: 100;
+    image-rendering: pixelated;
+    padding: 20px;
+    background-color: #ffedd1;*/
+    width: calc(100% - 1px);
+    padding: 20px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    position: relative;
+    top: 0;
+    background-color: #ffffff;
 }
 
 .img-responsive{
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 .farmImg {
-	border: solid 2px #000000;
+    border: solid 2px #000000;
 }
 
 .farmimgpreview {
-	border-style: solid;
-	border-width: 20px 21px 21px 20px;
-	-moz-border-image: url(frame.png) 28 32 28 32 stretch;
-	-webkit-border-image: url(frame.png) 28 32 28 32 stretch;
-	-o-border-image: url(frame.png) 28 32 28 32 stretch;
-	border-image: url(frame.png) 28 32 28 32 fill stretch;
+    border-style: solid;
+    border-width: 20px 21px 21px 20px;
+    -moz-border-image: url(frame.png) 28 32 28 32 stretch;
+    -webkit-border-image: url(frame.png) 28 32 28 32 stretch;
+    -o-border-image: url(frame.png) 28 32 28 32 stretch;
+    border-image: url(frame.png) 28 32 28 32 fill stretch;
 }
 
 .previewbox {
-	margin: 0px;
+    margin: 0px;
 }
 
 .headimg {
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	height: 80%;
-	position: absolute;
-	left: 8%;
-	bottom: 5%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    height: 80%;
+    position: absolute;
+    left: 8%;
+    bottom: 5%;
 }
 
 .previewimage {
-	position:relative;	
-	overflow: hidden;
+    position:relative;
+    overflow: hidden;
 }
 
 .previewtext {
-	position:absolute;
-	font-family: 'VT323';
-	font-size: 16pt;
-	bottom:21px;
-	left: 35px;
-	width: calc(100% - 30px - 41px);
-	background-color: rgba(0,0,0,0.7);
-	padding: 0px;
-	color: #FFFFFF;
-	overflow:hidden;
+    position:absolute;
+    font-family: 'VT323';
+    font-size: 16pt;
+    bottom:21px;
+    left: 35px;
+    width: calc(100% - 30px - 41px);
+    background-color: rgba(0,0,0,0.7);
+    padding: 0px;
+    color: #FFFFFF;
+    overflow:hidden;
 }
 
 .maptextbase {
-	position:absolute;
-	font-family: 'VT323';
-	font-size: 16pt;
-	top: 46px;
-	height:auto;
-	left: 35px;
-	width: auto;
-	background-color: rgba(0,0,0,0.0);
-	padding: 0px;
-	color: #FFFFFF;
-	overflow:hidden;
+    position:absolute;
+    font-family: 'VT323';
+    font-size: 16pt;
+    top: 46px;
+    height:auto;
+    left: 35px;
+    width: auto;
+    background-color: rgba(0,0,0,0.0);
+    padding: 0px;
+    color: #FFFFFF;
+    overflow:hidden;
 }
 
 .maptextinsert {
-	float:left;
-	display:inline;
-	font-family: 'VT323';
-	font-size: 16pt;
-	background-color: rgba(0,0,0,0.75);
-	padding: 0px;
-	height: 30px;
-	color: #FFFFFF;
-	overflow:hidden;
-	margin-right: 10px;
+    float:left;
+    display:inline;
+    font-family: 'VT323';
+    font-size: 16pt;
+    background-color: rgba(0,0,0,0.75);
+    padding: 0px;
+    height: 30px;
+    color: #FFFFFF;
+    overflow:hidden;
+    margin-right: 10px;
 }
 
 .npc-container {
-	float:left;
-	display:inline;
-	position: relative;
+    float:left;
+    display:inline;
+    position: relative;
 }
 
 .npc-profile {
-	width:64px;
-	border-style: solid;
-	background-color: #ffffff;
-	border-width: 2px;
-	border-color: #000000;
-	margin: 1px;
+    width:64px;
+    border-style: solid;
+    background-color: #ffffff;
+    border-width: 2px;
+    border-color: #000000;
+    margin: 1px;
 }
 
 .npc-relationship {
-	position:absolute;
-	font-family: 'VT323';
-	font-size: 64px;
-	top: 0px;
-	height:100%;
-	left: 0px;
-	width: 100%;
-	background-color: rgba(0,0,0,0.0);
-	padding: 2%;
-	color: #ffffff;
-	overflow:hidden;
-	text-shadow: -2px 2px #000000;
+    position:absolute;
+    font-family: 'VT323';
+    font-size: 64px;
+    top: 0px;
+    height:100%;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.0);
+    padding: 2%;
+    color: #ffffff;
+    overflow:hidden;
+    text-shadow: -2px 2px #000000;
 }
 
 .npc-profile img {
-	width: 100%;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
+    width: 100%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
 }
 
  .npc-button {
- 	padding: 0px;
+     padding: 0px;
  }
 
 .npc-0 {
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .npc-1 {
-	background-color: #fffcfc;
+    background-color: #fffcfc;
 }
 
 .npc-2 {
-	background-color: #ffe7e7;
+    background-color: #ffe7e7;
 }
 
 .npc-3 {
-	background-color: #ffd2d2;
+    background-color: #ffd2d2;
 }
 
 .npc-4 {
-	background-color: #ffbdbd;
+    background-color: #ffbdbd;
 }
 
 .npc-5 {
-	background-color: #ffa8a8;
+    background-color: #ffa8a8;
 }
 
 .npc-6 {
-	background-color: #ff9393;
+    background-color: #ff9393;
 }
 
 .npc-7 {
-	background-color: #ff7e7e;
+    background-color: #ff7e7e;
 }
 
 .npc-8 {
-	background-color: #ff6969;
+    background-color: #ff6969;
 }
 
 .npc-9 {
-	background-color: #ff5454;
+    background-color: #ff5454;
 }
 
 .npc-10 {
-	background-color: #ff3f3f;
+    background-color: #ff3f3f;
 }
 
 .npc-11 {
-	background-color: #ff2a2a;
+    background-color: #ff2a2a;
 }
 
 .npc-12 {
-	background-color: #ff1515;
+    background-color: #ff1515;
 }
 
 .npc-13 {
-	background-color: #ff0000;
+    background-color: #ff0000;
 }
 
 .monster-container {
-	float:left;
-	display:inline;
-	position: relative;
+    float:left;
+    display:inline;
+    position: relative;
 }
 
 .monster-profile {
-	width:64px;
-	height:64px;
-	border-style: solid;
-	background-color: #ffffff;
-	border-width: 2px;
-	border-color: #000000;
-	margin: 2px;
-	overflow: hidden;
-	padding: 2px;
+    width:64px;
+    height:64px;
+    border-style: solid;
+    background-color: #ffffff;
+    border-width: 2px;
+    border-color: #000000;
+    margin: 2px;
+    overflow: hidden;
+    padding: 2px;
 }
 
 .monster-text {
-	position:absolute;
-	font-family: 'VT323';
-	font-size: 64px;
-	top: 0px;
-	height:100%;
-	left: 0px;
-	width: 100%;
-	background-color: rgba(0,0,0,0.0);
-	padding: 2%;
-	color: #ffffff;
-	overflow:hidden;
-	text-shadow: -2px 2px #000000;
+    position:absolute;
+    font-family: 'VT323';
+    font-size: 64px;
+    top: 0px;
+    height:100%;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.0);
+    padding: 2%;
+    color: #ffffff;
+    overflow:hidden;
+    text-shadow: -2px 2px #000000;
 }
 
 .monster-profile img {
-	width: 100%;
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
+    width: 100%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
 }
 
  .monster-button {
- 	padding: 0px;
+     padding: 0px;
  }
 
 .maptextinsert a {
-	color:#FFFFFF;
+    color:#FFFFFF;
 }
 
 .maptextinsert button {
-	color:#FFFFFF;;
+    color:#FFFFFF;;
 }
 
 .maptextinsert :hover {
-	color:#FFFFFF;
+    color:#FFFFFF;
 }
 
 .buttoncompensation {
-	display:inline-block;
-	padding:3px;
-	padding-right:7px;
-	padding-left:5px;
+    display:inline-block;
+    padding:3px;
+    padding-right:7px;
+    padding-left:5px;
 }
 
 .col-sm-6.previewbox {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 body {
-	line-height: 1;
-	padding-top:0px;
+    line-height: 1;
+    padding-top:0px;
 }
 
 .blogpost {
-	font-family: arial;
-	font-size: 14px;
-	padding-bottom: 1.5em;
+    font-family: arial;
+    font-size: 14px;
+    padding-bottom: 1.5em;
 }
 
 .adminpanelitem {
-	max-height: 400px;
-	overflow-y: auto;
-	overflow-x: hidden;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
 }
 
 .clickable {
-	cursor:pointer;
-	border-bottom:2px dotted #337ab7;
+    cursor:pointer;
+    border-bottom:2px dotted #337ab7;
 }
 
 .noevents {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 .nav li a {
-	margin: 0 10px;
-	color: #000000;
+    margin: 0 10px;
+    color: #000000;
 
-	border-radius: 30px;
-	border-style: solid;
-	border-width: 21px 21px 21px 21px;
-	-moz-border-image: url(textBox.png) 30 30 30 30 stretch;
-	-webkit-border-image: url(textBox.png) 30 30 30 30 stretch;
-	-o-border-image: url(textBox.png) 30 30 30 30 stretch;
-	border-image: url(textBox.png) 30 30 30 30 fill stretch;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 21px 21px 21px 21px;
+    -moz-border-image: url(textBox.png) 30 30 30 30 stretch;
+    -webkit-border-image: url(textBox.png) 30 30 30 30 stretch;
+    -o-border-image: url(textBox.png) 30 30 30 30 stretch;
+    border-image: url(textBox.png) 30 30 30 30 fill stretch;
 }
 
 .nav li a:active {
-	background-color: #550000;
+    background-color: #550000;
 }
 
 .hiddenblog {
-	opacity: 0.5;
+    opacity: 0.5;
 }
 
 .titlelink {
-	color: #101010;
+    color: #101010;
 }
 
 .titlelink:hover {
-	text-decoration: none;
-	color: #101010;
+    text-decoration: none;
+    color: #101010;
 }
 
 .logo {
-	image-rendering: pixelated;
-	image-rendering: -moz-crisp-edges;
-	width: 150px;
-	height: auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    width: 150px;
+    height: auto;
 }
 
 .titleimgcontainer {
-	display:inline-block;
+    display:inline-block;
 }
 
 dl.faq dt {
-	font-weight: bold;
+    font-weight: bold;
 }
 dl.faq dd {
-	padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
 code {
-	white-space: pre;
-	word-break: normal;
-	word-wrap: normal;
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;
 }
 p .cc_message {
-	color: #ffffff !important;
-	font-family: sans-serif;
+    color: #ffffff !important;
+    font-family: sans-serif;
 }

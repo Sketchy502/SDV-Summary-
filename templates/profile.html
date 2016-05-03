@@ -1,32 +1,32 @@
 {% extends "base.html" %}
 {% block header %}
 {{super()}}
-		<!-- Place this data between the <head> tags of your website -->
-		<meta name="description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)" />
+        <!-- Place this data between the <head> tags of your website -->
+        <meta name="description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)" />
 
-		<!-- Schema.org markup for Google+ -->
-		<meta itemprop="name" content="{{data.farmName}} Farm Summary - upload.farm">
-		<meta itemprop="description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)">
-		<meta itemprop="image" content="http://upload.farm/{{data.portrait_url}}">
+        <!-- Schema.org markup for Google+ -->
+        <meta itemprop="name" content="{{data.farmName}} Farm Summary - upload.farm">
+        <meta itemprop="description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)">
+        <meta itemprop="image" content="http://upload.farm/{{data.portrait_url}}">
 
-		<!-- Twitter Card data -->
-		<meta name="twitter:card" content="http://upload.farm/{{data.portrait_url}}">
-		<meta name="twitter:site" content="@laukei">
-		<meta name="twitter:title" content="{{data.farmName}} Farm Summary - upload.farm">
-		<meta name="twitter:description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)">
-		<meta name="twitter:creator" content="@laukei">
-		<!-- Twitter summary card with large image must be at least 280x150px -->
-		<meta name="twitter:image:src" content="http://upload.farm/{{data.portrait_url}}">
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="http://upload.farm/{{data.portrait_url}}">
+        <meta name="twitter:site" content="@laukei">
+        <meta name="twitter:title" content="{{data.farmName}} Farm Summary - upload.farm">
+        <meta name="twitter:description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)">
+        <meta name="twitter:creator" content="@laukei">
+        <!-- Twitter summary card with large image must be at least 280x150px -->
+        <meta name="twitter:image:src" content="http://upload.farm/{{data.portrait_url}}">
 
-		<!-- Open Graph data -->
-		<meta property="og:title" content="{{data.farmName}} Farm Summary - upload.farm" />
-		<meta property="og:type" content="profile" />
-		<meta property="og:url" content="http://upload.farm/{{data.url}}" />
-		<meta property="og:image" content="http://upload.farm/{{data.portrait_url}}" />
-		<meta property="og:image" content="http://upload.farm/{{data.avatar_url}}" />
-		<meta property="og:image" content="http://upload.farm/{{data.farm_url}}" />
-		<meta property="og:description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)" />
-		<meta property="og:site_name" content="upload.farm" />
+        <!-- Open Graph data -->
+        <meta property="og:title" content="{{data.farmName}} Farm Summary - upload.farm" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content="http://upload.farm/{{data.url}}" />
+        <meta property="og:image" content="http://upload.farm/{{data.portrait_url}}" />
+        <meta property="og:image" content="http://upload.farm/{{data.avatar_url}}" />
+        <meta property="og:image" content="http://upload.farm/{{data.farm_url}}" />
+        <meta property="og:description" content="Summary of {{data.farmName}} Farm by {{data.name}} (Stardew Valley)" />
+        <meta property="og:site_name" content="upload.farm" />
 <script>
 $(function () {
   $('[data-toggle="popover"]').popover()
@@ -35,472 +35,472 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 function flashed_close(id) {
-	$(document.getElementById(id)).slideUp(400);
+    $(document.getElementById(id)).slideUp(400);
 }
 function post_vote(type,url) {
-	if (type=='ng') {
-		var vote = false
-	}
-	else if (type=='ps') {
-		var vote = true
-	}
-	$.post('/_vote',{'vote':vote, url: url},function(result) {
-		if ( result != 'true') {
-			window.alert(result);
-		}
-	});
+    if (type=='ng') {
+        var vote = false
+    }
+    else if (type=='ps') {
+        var vote = true
+    }
+    $.post('/_vote',{'vote':vote, url: url},function(result) {
+        if ( result != 'true') {
+            window.alert(result);
+        }
+    });
 }
 $(document).ready(function() {
-	$(".clickable").click(function() {
-		var splitstr = $(this).attr('id').split('-')
-		if ( splitstr[1] == 'scafc' ) {
-			var now = new Date();
-			var time = now.getTime();
-			var expireTime = time + 30000*36000;
-			now.setTime(expireTime);
-			document.cookie = splitstr[2]+'=true;expires='+now.toGMTString()+';path=/';
-			flashed_close(splitstr[0]+'-container');
-		}
-		else if ( splitstr[1] == 'fc' ) {
-			flashed_close(splitstr[0]+'-container');
-		}
-		else if ( splitstr[0] == 'vote' ) {
-			post_vote(splitstr[1],'{{data.url}}');
-		}
-		else {
-		};
-	});
+    $(".clickable").click(function() {
+        var splitstr = $(this).attr('id').split('-')
+        if ( splitstr[1] == 'scafc' ) {
+            var now = new Date();
+            var time = now.getTime();
+            var expireTime = time + 30000*36000;
+            now.setTime(expireTime);
+            document.cookie = splitstr[2]+'=true;expires='+now.toGMTString()+';path=/';
+            flashed_close(splitstr[0]+'-container');
+        }
+        else if ( splitstr[1] == 'fc' ) {
+            flashed_close(splitstr[0]+'-container');
+        }
+        else if ( splitstr[0] == 'vote' ) {
+            post_vote(splitstr[1],'{{data.url}}');
+        }
+        else {
+        };
+    });
 })
 </script>
 {% if others %}
-	{% for other in others %}
-		{% if other.0 == data.url %}
-			{% set center = loop.index0 %}
-			<script>
-				document.addEventListener('keydown',function(e) {
-					{% if center-1 >= 0 %}
-					if (e.keyCode == 37) {
-						window.location.replace('{{others[center-1].0}}');
-					}
-					{% endif %}
-					{% if center-1 >= 0 and others[center+1] %}else{%endif%} {%if others[center+1]%}if (e.keyCode == 39) {
-						window.location.replace('{{others[center+1].0}}')
-					}
-					{%endif%}
-				});	
-			</script>
-		{%endif%}
-	{% endfor %}
+    {% for other in others %}
+        {% if other.0 == data.url %}
+            {% set center = loop.index0 %}
+            <script>
+                document.addEventListener('keydown',function(e) {
+                    {% if center-1 >= 0 %}
+                    if (e.keyCode == 37) {
+                        window.location.replace('{{others[center-1].0}}');
+                    }
+                    {% endif %}
+                    {% if center-1 >= 0 and others[center+1] %}else{%endif%} {%if others[center+1]%}if (e.keyCode == 39) {
+                        window.location.replace('{{others[center+1].0}}')
+                    }
+                    {%endif%}
+                });
+            </script>
+        {%endif%}
+    {% endfor %}
 {% endif %}
 {% endblock %}
 
 {% block title %}{{data.farmName}} Farm - {{super()}}{% endblock %}
 {% block bodycontent %}
-			<div class="row center-block">
-				<div class="col-md-12 col-sm-12 panel">
-					<div class="interiorpanel">
-						<div class="col-sm-2 hidden-xs text-center">
-							<a href="/"><img src="{{url_for('static', filename='logo.png')}}" class="logo"></a>
-						</div>
-						<div class="col-sm-10 col-xs-12">
-							<div class="row">
-								<div class="col-md-12">
-									<h1 class="text-center" style="margin-bottom:0px;">{{ data.farmName }} Farm</h1>
-								</div>
-							</div>
-							{% if others %}
-								<div class="row center-block">
-									<div class="col-md-12">
-										<ul class="list-inline text-center">
-										{% for other in others %}
-											{% if other.0 == data.url %}
-											<li><b>{{ other.1 }}</b></li>
-											{% else %}
-											<li><a href="/{{ other.0 }}" >{{ other.1 }}</a></li>
-											{% endif %}
-										{% endfor %}
-										</ul>
-									</div>
-								</div>
-							{% endif %}
-							{% if claimable %}
-								<div class="row center-block">
-									<div class="col-md-12">
-										<ul class="list-inline text-center">
-										<li>Claim:</li>
-										<li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will claim <b>only this</b> upload.<br><form action="{{data.url}}/claim" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Claim&nbsp;it!</button></form>'>this page</button>?</li>
-										{% if claimables|length > 1 %}
-											<li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will claim <b>all uploads</b> of this Farm.<br><form action="{{data.url}}/claimall" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Claim&nbsp;all!</button></form>'>all claimable</button>?</li>
-										{% endif %}
-										</ul>
-									</div>
-								</div>
-							{% elif deletable %}
-								<div class="row center-block">
-									<div class="col-md-12">
-										<ul class="list-inline text-center">
-										<li>Delete:</li>
-										<li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will delete <b>only this</b> upload.<br><form action="{{data.url}}/del" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Delete&nbsp;it!</button></form>'>this page</button>?</li>
-										<li>
-										{% if others|length > 1 %}
-											<li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will delete <b>all uploads</b> of this Farm.<br><form action="{{data.url}}/delall" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Delete&nbsp;all!</button></form>'>all for this farm</button>?</li>
-										{% endif %}
-										</ul>
-									</div>
-								</div>
-							{% endif %}
-							{% if error or data.failed_processing %}
-								<div class="row center-block">
-									<div class="col-md-12">
-										{% if error %}
-										<p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
-										{% endif %}
-										{% if data.failed_processing %}
-										<p class="text-danger text-center"><strong>Warning:</strong> <button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This farm failed image processing, which means the savegame had unexpected contents. It might be modded, or malicious. Be aware if downloading the savegame.'>This farm failed image processing!</button></p>
-										{%endif%}
-									</div>
-								</div>
-							{% endif %}
-							<div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
-								<p><a href="/">Go back Home</a></p>
-							</div>
-							<div class="row center-block">
-								<div class="col-md-12 text-center">
-									<span class="clickable" id="vote-ps">
-										<sub>upvote</sub>
-									</span>	
-									<span class="clickable" id="vote-ng">
-										<sub>downvote</sub>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% with messages = get_flashed_messages() %}
-				{% if messages %}
-					{% for message in messages %}
-						<div class="row center-block" id="{{loop.index0}}-container">
-							<div class="col-md-12 panel text-center">
-								<div class="bulletinpanel">
-									<div class="bulletinclose">
-										<span id="{{loop.index0}}-{%if 'cookie_controlled' in message.keys()%}scafc-{{message.cookie_controlled}}{%else%}fc{%endif%}" class="clickable"><img class="img-responsive" src="{{url_for('static',filename='css/bulletin/cross.png')}}"></span>
-									</div>
-									<div class="row center-block">
-										<div class="col-md-12">
-											{{message.message|safe}}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-			<div class="row center-block">				
-				<div class="col-md-8 col-sm-12 panel text-center">
-					<div class="interiorpanel tabbable">
-						<ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
-							<li class="active"><a href="#playerInfo" data-toggle="pill">Stats</a></li>
-							<li><a href="#familyPortrait" data-toggle="pill">Summary</a></li>
-							<li><a href="#skills" data-toggle="pill">Skills</a></li>
-						</ul>
-						<div class="tab-content text-left">
-							<div id="playerInfo" class="tab-pane active">
-								<div class="col-md-4 col-sm-4 col-xs-12">
-									<div class="avatarPanel">
-										<img src="{{ url_for('static', filename='images/'+data.url+'/avatar.png') }}" class="playerAvatar">
-									</div>
-								</div>
-								<div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
-									<dl class="dl-horizontal">
-										<dt>Name</dt><dd>{{ data.name }}</dd>
-										<dt>Current Funds</dt><dd>{{ data.money }}g</dd>
-										<dt>Total Earnings</dt><dd>{{ data.totalMoneyEarned }}g</dd>
-										<dt>Gender</dt><dd>{% if data.isMale == 'true' %} Male {% else %} Female {% endif %}</dd>
-										</dd>
-										<dt>Favorite Thing</dt><dd>{{ data.favoriteThing }}</dd>
-										<dt>Health</dt><dd>{{ data.maxHealth }}</dd>
-										<dt>Stamina</dt><dd>{{ data.maxStamina }}</dd>
-										<dt>Steps Taken</dt><dd>{{ data.statsStepsTaken }}</dd>
-										{% if data.deepestMineLevel > 120 %}
-											<dt><b>Max Depth:</b><dd></dd></dt>
-											<dt>The Mines</dt><dd>level 120</dd>
-											<dt>Skull Cavern</dt><dd>level {{ data.deepestMineLevel - 120}}</dd>
-										{% else %}
-											<dt>Max Mine Depth</dt><dd>level {{ data.deepestMineLevel }}</dd>
-										{% endif %}
-		 								<dt>Time Played</dt><dd>{{ data.millisecondsPlayed }} hours</dd>
-		 							</dl>
-								</div>
-							</div>
-							<div id="familyPortrait" class="tab-pane">
+            <div class="row center-block">
+                <div class="col-md-12 col-sm-12 panel">
+                    <div class="interiorpanel">
+                        <div class="col-sm-2 hidden-xs text-center">
+                            <a href="/"><img src="{{url_for('static', filename='logo.png')}}" class="logo"></a>
+                        </div>
+                        <div class="col-sm-10 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="text-center" style="margin-bottom:0px;">{{ data.farmName }} Farm</h1>
+                                </div>
+                            </div>
+                            {% if others %}
+                                <div class="row center-block">
+                                    <div class="col-md-12">
+                                        <ul class="list-inline text-center">
+                                        {% for other in others %}
+                                            {% if other.0 == data.url %}
+                                            <li><b>{{ other.1 }}</b></li>
+                                            {% else %}
+                                            <li><a href="/{{ other.0 }}" >{{ other.1 }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if claimable %}
+                                <div class="row center-block">
+                                    <div class="col-md-12">
+                                        <ul class="list-inline text-center">
+                                        <li>Claim:</li>
+                                        <li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will claim <b>only this</b> upload.<br><form action="{{data.url}}/claim" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Claim&nbsp;it!</button></form>'>this page</button>?</li>
+                                        {% if claimables|length > 1 %}
+                                            <li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will claim <b>all uploads</b> of this Farm.<br><form action="{{data.url}}/claimall" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Claim&nbsp;all!</button></form>'>all claimable</button>?</li>
+                                        {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% elif deletable %}
+                                <div class="row center-block">
+                                    <div class="col-md-12">
+                                        <ul class="list-inline text-center">
+                                        <li>Delete:</li>
+                                        <li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will delete <b>only this</b> upload.<br><form action="{{data.url}}/del" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Delete&nbsp;it!</button></form>'>this page</button>?</li>
+                                        <li>
+                                        {% if others|length > 1 %}
+                                            <li><button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This will delete <b>all uploads</b> of this Farm.<br><form action="{{data.url}}/delall" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Delete&nbsp;all!</button></form>'>all for this farm</button>?</li>
+                                        {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if error or data.failed_processing %}
+                                <div class="row center-block">
+                                    <div class="col-md-12">
+                                        {% if error %}
+                                        <p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
+                                        {% endif %}
+                                        {% if data.failed_processing %}
+                                        <p class="text-danger text-center"><strong>Warning:</strong> <button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='This farm failed image processing, which means the savegame had unexpected contents. It might be modded, or malicious. Be aware if downloading the savegame.'>This farm failed image processing!</button></p>
+                                        {%endif%}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
+                                <p><a href="/">Go back Home</a></p>
+                            </div>
+                            <div class="row center-block">
+                                <div class="col-md-12 text-center">
+                                    <span class="clickable" id="vote-ps">
+                                        <sub>upvote</sub>
+                                    </span>
+                                    <span class="clickable" id="vote-ng">
+                                        <sub>downvote</sub>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="row center-block" id="{{loop.index0}}-container">
+                            <div class="col-md-12 panel text-center">
+                                <div class="bulletinpanel">
+                                    <div class="bulletinclose">
+                                        <span id="{{loop.index0}}-{%if 'cookie_controlled' in message.keys()%}scafc-{{message.cookie_controlled}}{%else%}fc{%endif%}" class="clickable"><img class="img-responsive" src="{{url_for('static',filename='css/bulletin/cross.png')}}"></span>
+                                    </div>
+                                    <div class="row center-block">
+                                        <div class="col-md-12">
+                                            {{message.message|safe}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="row center-block">
+                <div class="col-md-8 col-sm-12 panel text-center">
+                    <div class="interiorpanel tabbable">
+                        <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px;">
+                            <li class="active"><a href="#playerInfo" data-toggle="pill">Stats</a></li>
+                            <li><a href="#familyPortrait" data-toggle="pill">Summary</a></li>
+                            <li><a href="#skills" data-toggle="pill">Skills</a></li>
+                        </ul>
+                        <div class="tab-content text-left">
+                            <div id="playerInfo" class="tab-pane active">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="avatarPanel">
+                                        <img src="{{ url_for('static', filename='images/'+data.url+'/avatar.png') }}" class="playerAvatar">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
+                                    <dl class="dl-horizontal">
+                                        <dt>Name</dt><dd>{{ data.name }}</dd>
+                                        <dt>Current Funds</dt><dd>{{ data.money }}g</dd>
+                                        <dt>Total Earnings</dt><dd>{{ data.totalMoneyEarned }}g</dd>
+                                        <dt>Gender</dt><dd>{% if data.isMale == 'true' %} Male {% else %} Female {% endif %}</dd>
+                                        </dd>
+                                        <dt>Favorite Thing</dt><dd>{{ data.favoriteThing }}</dd>
+                                        <dt>Health</dt><dd>{{ data.maxHealth }}</dd>
+                                        <dt>Stamina</dt><dd>{{ data.maxStamina }}</dd>
+                                        <dt>Steps Taken</dt><dd>{{ data.statsStepsTaken }}</dd>
+                                        {% if data.deepestMineLevel > 120 %}
+                                            <dt><b>Max Depth:</b><dd></dd></dt>
+                                            <dt>The Mines</dt><dd>level 120</dd>
+                                            <dt>Skull Cavern</dt><dd>level {{ data.deepestMineLevel - 120}}</dd>
+                                        {% else %}
+                                            <dt>Max Mine Depth</dt><dd>level {{ data.deepestMineLevel }}</dd>
+                                        {% endif %}
+                                         <dt>Time Played</dt><dd>{{ data.millisecondsPlayed }} hours</dd>
+                                     </dl>
+                                </div>
+                            </div>
+                            <div id="familyPortrait" class="tab-pane">
 
-								<div class="col-md-4 col-sm-4 col-xs-12">
-									<div class="portraitPanel">
-										<img src="{{ url_for('static', filename='images/'+data.url+'/portrait.png') }}" class="playerPortrait">
-									</div>
-								</div>
-								<div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
-									<p>
-									{% if data.portrait_info['partner'] != None %}
-										{{data.name}} is married to {{ data.portrait_info['partner'] }}{%if data.petName!=None%}, {%else%}and{%endif%}
-									{% else %}
-										{{data.name}} is unmarried{%if data.petName!=None%},{%else%} and{%endif%}
-									{%endif%}
-									{% if data.portrait_info['children']|length > 0 %}
-										{% for child in data.portrait_info['children'] %}
-										{%if loop.index0 == 0 %}has{%else%}and{%endif%} a {{ child[2] }} day old {% if child[0] == 0 %}son{%else%}daughter{%endif%} named {{ child[3] }}{%if not loop.last %} {%endif%}{% endfor %}{%if loop.last and data.petName!=None%},{%endif%} 
-									{% else %}
-										has no children{%if data.petName!=None%},{%else%}.{%endif%} 
-									{%endif%}
-									{%if data.petName != None %}
-									and has a pet {% if data.catPerson == 'true' %} cat {% else %} dog {% endif %} named {{ data.petName }}.
-									{%endif%}
-									</p>
-								</div>
-								<div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
-									{% if data.animals %}
-										<!--<h3>Farm Animals</h3>-->
-										<br>
-										{% if data.animals['horse'] %}
-											<p>Farm horse: {{data.animals['horse']}}</p>
-										{%endif%}
-										{% for key in data.animals.keys() %}
-											{%if key != 'horse' %}
-												<p>{{data.animals[key]|length}} {{key}}{% if data.animals[key]|length>1 %}s{% endif %}:
-													{% for row in data.animals[key] %}
-														<span class="clickable" data-toggle="tooltip" title="{{row[1]}} days old">{{row[0]}}</span>{%if not loop.last%},{%endif%}
-													{% endfor %}
-												</p>
-											{%endif%}
-										{% endfor %}
-									{% endif %}
-								</div>
-							{#
-							<dl>
-							{% for pair in data|dictsort %}
-							<dt>{{pair.0}}</dt>
-							<dd>{{pair.1}}</dd>
-							<br>
-							{% endfor %}
-							</dl>#}
-							</div>
-							<div id="skills" class="tab-pane">
-								<dl class="dl-horizontal">
-									{% set professions = [data.professions0,data.professions1,data.professions2,data.professions3,data.professions4,data.professions5,data.professions6,data.professions7,data.professions8,data.professions9] %}
-									<!-- start -->
-									{% set profindex = {
-									'Farming':{4:('Rancher','Tiller'),9:('Coopmaster','Shepherd','Artisan','Agriculturist')},
-									'Mining':{4:('Miner','Geologist'),9:('Blacksmith','Prospector','Excavator','Gemologist')},
-									'Foraging':{4:('Forester','Gatherer'),9:('Lumberjack','Tapper','Botanist','Tracker')},
-									'Fishing':{4:('Fisher','Trapper'),9:('Angler','Pirate','Mariner','Luremaster')},
-									'Combat':{4:('Fighter','Scout'),9:('Brute','Defender','Acrobat','Desperado')}}
-									%}
-									{% set blurbs = {
-									'Rancher':'Animal Products worth 10% more.',
-									'Tiller':'Crops worth 10% more.',
-									'Coopmaster':'Befriend Coop animals quicker.<br>Incubation time cut in half.',
-									'Shepherd':'Befriend barn animals quicker.<br>Sheep produce wool faster.',
-									'Artisan':'Artisan Goods (wine, cheese, oil, etc.) worth 50% more.',
-									'Agriculturist':'All crops grow 10% faster.',
-									'Miner':'+1 ore per vein.',
-									'Geologist':'Chance for Gems to appear in pairs.',
-									'Blacksmith':'Metal bars worth 25% more.',
-									'Excavator':'Geode find doubled.',
-									'Prospector':'Coal find doubled.',
-									'Gemologist':'Gems worth 30% more.',
-									'Forester':'Wood worth 50% more',
-									'Gatherer':'Chance for double harvest of foraged items.',
-									'Lumberjack':'Normal trees occasionally drop hardwood.',
-									'Botanist':'Foraged items are always gold quality.',
-									'Tapper':'Syrup is worth 25% more.',
-									'Tracker':'Locations of foragable items are revealed.',
-									'Fisher':'Fish worth 25% more.',
-									'Trapper':'Resources required to craft crab pots reduced.',
-									'Angler':'Fish worth 50% more.',
-									'Pirate':'Chance to find treasure doubled.',
-									'Mariner':'Crab pots never catch trash.',
-									'Luremaster':'Crab pots no longer need to be baited.',
-									'Fighter':'All attacks deal 10% more damage.<br>+15 HP.',
-									'Scout':'Critical strike chance increased by 50%.',
-									'Brute':'Damage is increased by 15%.',
-									'Defender':'HP is increased by 25.',
-									'Acrobat':'Cooldown on special moves is cut in half.',
-									'Desperado':'Critical hits are deadly.'} %}
-									{% for skill in [('Farming',data.farmingLevel),('Mining',data.miningLevel),('Foraging',data.foragingLevel),('Fishing',data.fishingLevel),('Combat',data.combatLevel)] %}
-										<dt>{{skill[0]}}</dt>
-										<dd>
-											<div class="col-sm-12">
-													<div class="pipdivhalf">
-														{% for level in range(skill[1]) %}
-															<div class="pipdiv">
-																{% if (level + 1) % 5 != 0 %}
-																<img class="pip" src="{{url_for('static', filename='images/skills/point_active.png')}}">
-																{% else %}
-																<a style="text-decoration: none;" tabindex="0" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-html="true" {% for value in profindex[skill[0]][level] %}{% if value in professions %}title="<img src='{{url_for('static', filename='assets/professions/'+value+'.png')}}'>{{value}}" data-content="{{blurbs[value]}}"{%endif%}{%endfor%}>
-																<img class="pip" src="{{url_for('static', filename='images/skills/profession_active.png')}}">
-																</a>
-																{% endif %}
-															</div>
-															{% if level == 4 %}
-													</div>
-													<div class="pipdivhalf">
-															{% endif %}
-														{% endfor %}
-													{% for level in range(skill[1] + 1, 11) %}
-														<div class="pipdiv">
-															{% if (level) % 5 != 0 %}
-															<img class="pip" src="{{url_for('static', filename='images/skills/point_inactive.png')}}">
-															{% else %}
-															<img class="pip" src="{{url_for('static', filename='images/skills/profession_inactive.png')}}">
-															{% endif %}
-														</div>
-														{% if level == 4 %}
-													</div>
-													<div class="pipdivhalf">
-														{% endif %}
-													{% endfor %}
-												</div>
-												<div class="pipdivhalf text-center">
-													<span class="pixeltext">{{skill[1]}}</span>
-												</div>
-											</div>
-										</dd>
-									{% endfor %}
-								</dl>
-								<p class="text-center">(Hover for professions)</p>
-							</div>
-						</div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="portraitPanel">
+                                        <img src="{{ url_for('static', filename='images/'+data.url+'/portrait.png') }}" class="playerPortrait">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
+                                    <p>
+                                    {% if data.portrait_info['partner'] != None %}
+                                        {{data.name}} is married to {{ data.portrait_info['partner'] }}{%if data.petName!=None%}, {%else%}and{%endif%}
+                                    {% else %}
+                                        {{data.name}} is unmarried{%if data.petName!=None%},{%else%} and{%endif%}
+                                    {%endif%}
+                                    {% if data.portrait_info['children']|length > 0 %}
+                                        {% for child in data.portrait_info['children'] %}
+                                        {%if loop.index0 == 0 %}has{%else%}and{%endif%} a {{ child[2] }} day old {% if child[0] == 0 %}son{%else%}daughter{%endif%} named {{ child[3] }}{%if not loop.last %} {%endif%}{% endfor %}{%if loop.last and data.petName!=None%},{%endif%}
+                                    {% else %}
+                                        has no children{%if data.petName!=None%},{%else%}.{%endif%}
+                                    {%endif%}
+                                    {%if data.petName != None %}
+                                    and has a pet {% if data.catPerson == 'true' %} cat {% else %} dog {% endif %} named {{ data.petName }}.
+                                    {%endif%}
+                                    </p>
+                                </div>
+                                <div class="col-md-7 col-sm-offset-0 col-lg-offset-0 col-md-offset-1 col-sm-8 col-xs-12">
+                                    {% if data.animals %}
+                                        <!--<h3>Farm Animals</h3>-->
+                                        <br>
+                                        {% if data.animals['horse'] %}
+                                            <p>Farm horse: {{data.animals['horse']}}</p>
+                                        {%endif%}
+                                        {% for key in data.animals.keys() %}
+                                            {%if key != 'horse' %}
+                                                <p>{{data.animals[key]|length}} {{key}}{% if data.animals[key]|length>1 %}s{% endif %}:
+                                                    {% for row in data.animals[key] %}
+                                                        <span class="clickable" data-toggle="tooltip" title="{{row[1]}} days old">{{row[0]}}</span>{%if not loop.last%},{%endif%}
+                                                    {% endfor %}
+                                                </p>
+                                            {%endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            {#
+                            <dl>
+                            {% for pair in data|dictsort %}
+                            <dt>{{pair.0}}</dt>
+                            <dd>{{pair.1}}</dd>
+                            <br>
+                            {% endfor %}
+                            </dl>#}
+                            </div>
+                            <div id="skills" class="tab-pane">
+                                <dl class="dl-horizontal">
+                                    {% set professions = [data.professions0,data.professions1,data.professions2,data.professions3,data.professions4,data.professions5,data.professions6,data.professions7,data.professions8,data.professions9] %}
+                                    <!-- start -->
+                                    {% set profindex = {
+                                    'Farming':{4:('Rancher','Tiller'),9:('Coopmaster','Shepherd','Artisan','Agriculturist')},
+                                    'Mining':{4:('Miner','Geologist'),9:('Blacksmith','Prospector','Excavator','Gemologist')},
+                                    'Foraging':{4:('Forester','Gatherer'),9:('Lumberjack','Tapper','Botanist','Tracker')},
+                                    'Fishing':{4:('Fisher','Trapper'),9:('Angler','Pirate','Mariner','Luremaster')},
+                                    'Combat':{4:('Fighter','Scout'),9:('Brute','Defender','Acrobat','Desperado')}}
+                                    %}
+                                    {% set blurbs = {
+                                    'Rancher':'Animal Products worth 10% more.',
+                                    'Tiller':'Crops worth 10% more.',
+                                    'Coopmaster':'Befriend Coop animals quicker.<br>Incubation time cut in half.',
+                                    'Shepherd':'Befriend barn animals quicker.<br>Sheep produce wool faster.',
+                                    'Artisan':'Artisan Goods (wine, cheese, oil, etc.) worth 50% more.',
+                                    'Agriculturist':'All crops grow 10% faster.',
+                                    'Miner':'+1 ore per vein.',
+                                    'Geologist':'Chance for Gems to appear in pairs.',
+                                    'Blacksmith':'Metal bars worth 25% more.',
+                                    'Excavator':'Geode find doubled.',
+                                    'Prospector':'Coal find doubled.',
+                                    'Gemologist':'Gems worth 30% more.',
+                                    'Forester':'Wood worth 50% more',
+                                    'Gatherer':'Chance for double harvest of foraged items.',
+                                    'Lumberjack':'Normal trees occasionally drop hardwood.',
+                                    'Botanist':'Foraged items are always gold quality.',
+                                    'Tapper':'Syrup is worth 25% more.',
+                                    'Tracker':'Locations of foragable items are revealed.',
+                                    'Fisher':'Fish worth 25% more.',
+                                    'Trapper':'Resources required to craft crab pots reduced.',
+                                    'Angler':'Fish worth 50% more.',
+                                    'Pirate':'Chance to find treasure doubled.',
+                                    'Mariner':'Crab pots never catch trash.',
+                                    'Luremaster':'Crab pots no longer need to be baited.',
+                                    'Fighter':'All attacks deal 10% more damage.<br>+15 HP.',
+                                    'Scout':'Critical strike chance increased by 50%.',
+                                    'Brute':'Damage is increased by 15%.',
+                                    'Defender':'HP is increased by 25.',
+                                    'Acrobat':'Cooldown on special moves is cut in half.',
+                                    'Desperado':'Critical hits are deadly.'} %}
+                                    {% for skill in [('Farming',data.farmingLevel),('Mining',data.miningLevel),('Foraging',data.foragingLevel),('Fishing',data.fishingLevel),('Combat',data.combatLevel)] %}
+                                        <dt>{{skill[0]}}</dt>
+                                        <dd>
+                                            <div class="col-sm-12">
+                                                    <div class="pipdivhalf">
+                                                        {% for level in range(skill[1]) %}
+                                                            <div class="pipdiv">
+                                                                {% if (level + 1) % 5 != 0 %}
+                                                                <img class="pip" src="{{url_for('static', filename='images/skills/point_active.png')}}">
+                                                                {% else %}
+                                                                <a style="text-decoration: none;" tabindex="0" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-html="true" {% for value in profindex[skill[0]][level] %}{% if value in professions %}title="<img src='{{url_for('static', filename='assets/professions/'+value+'.png')}}'>{{value}}" data-content="{{blurbs[value]}}"{%endif%}{%endfor%}>
+                                                                <img class="pip" src="{{url_for('static', filename='images/skills/profession_active.png')}}">
+                                                                </a>
+                                                                {% endif %}
+                                                            </div>
+                                                            {% if level == 4 %}
+                                                    </div>
+                                                    <div class="pipdivhalf">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% for level in range(skill[1] + 1, 11) %}
+                                                        <div class="pipdiv">
+                                                            {% if (level) % 5 != 0 %}
+                                                            <img class="pip" src="{{url_for('static', filename='images/skills/point_inactive.png')}}">
+                                                            {% else %}
+                                                            <img class="pip" src="{{url_for('static', filename='images/skills/profession_inactive.png')}}">
+                                                            {% endif %}
+                                                        </div>
+                                                        {% if level == 4 %}
+                                                    </div>
+                                                    <div class="pipdivhalf">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="pipdivhalf text-center">
+                                                    <span class="pixeltext">{{skill[1]}}</span>
+                                                </div>
+                                            </div>
+                                        </dd>
+                                    {% endfor %}
+                                </dl>
+                                <p class="text-center">(Hover for professions)</p>
+                            </div>
+                        </div>
 
-						<script>
-							$(document).ready(function () {
-								$('#myTab a:last').tab('show')
-							})
-						</script>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12 panel"><!--col-md-offset-1-->
-					<div class="interiorpanel text-center">
-						<h3>Minimap</h3>
-						<a href="#mainFarm"><img src="{{ url_for('static', filename='images/'+data.url+'/minimap.png') }}" class="img-responsive farmImg" style="image-rendering: pixelated;" height="auto"></a>
-						{% if data.download_enabled == True %}
-							<p class="text-center">
-								<button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='You use the contents of this zip at your own risk!<br><a href="/dl/{{data.url}}">I understand, download!</a>'>download savegame</button>
-							</p>
-							{% if deletable %}
-							<h5 class="text-center">
-								<button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='Disables sharing of the savegame you uploaded. Can be turned back on any time!<br><form action="{{data.url}}/disable-dl" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Disable!</button></form>'>disable sharing</button>
-							</h5>
-							{%endif%}
-						{% elif logged_in() and data.download_enabled != True and deletable %}
-							<p class="text-center">
-								<button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='Enables sharing of the savegame you uploaded by <b>all</b> users. Can be turned off any time!<br><form action="{{data.url}}/enable-dl" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Enable!</button></form>'>enable savegame sharing</button>
-							</p>
-						{% elif claimable or deletable %}
-							<p class="text-center">
-								To enable savegame sharing please first{%if not logged_in()%} <a href="{{url_for('signup')}}">sign up</a> or <a href="{{url_for('login')}}">sign in</a>, then{%endif%} claim this page.
-							</p>
-						{% endif %}
-					</div>					
-				</div>
-			</div>
-			<div class="row center-block">
-				<div class="col-md-8 col-sm-12 panel">
-					<div class="interiorpanel">	
-						<div class="col-md-12 text-center">
-							<h3>Friendships</h3>
-						</div>
-						{% for i in friendships %}
-							<div class="npc-container text-center">
-								<button type="button" class="btn-link npc-button" data-animation="false" data-toggle="tooltip" data-container="body" data-placement="auto" data-html="true" title='<img src="{{url_for('static',filename='assets/npcs/'+i.0+'.png')}}"><br>{{i.0}}: {{ i.1 // 250 }}/10'>
-									<div class="npc-profile npc-{{i.1//250}}">						
-										<img class="img-responsive" src="{{url_for('static',filename='assets/npc_icon/'+i.0+'.png')}}">
-									</div>
-								</button>
-							</div>
-						{% endfor %}
-					</div>
-				</div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#myTab a:last').tab('show')
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 panel"><!--col-md-offset-1-->
+                    <div class="interiorpanel text-center">
+                        <h3>Minimap</h3>
+                        <a href="#mainFarm"><img src="{{ url_for('static', filename='images/'+data.url+'/minimap.png') }}" class="img-responsive farmImg" style="image-rendering: pixelated;" height="auto"></a>
+                        {% if data.download_enabled == True %}
+                            <p class="text-center">
+                                <button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='You use the contents of this zip at your own risk!<br><a href="/dl/{{data.url}}">I understand, download!</a>'>download savegame</button>
+                            </p>
+                            {% if deletable %}
+                            <h5 class="text-center">
+                                <button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='Disables sharing of the savegame you uploaded. Can be turned back on any time!<br><form action="{{data.url}}/disable-dl" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Disable!</button></form>'>disable sharing</button>
+                            </h5>
+                            {%endif%}
+                        {% elif logged_in() and data.download_enabled != True and deletable %}
+                            <p class="text-center">
+                                <button type="button" class="btn-link" data-toggle="tooltip" data-container="body" data-placement="bottom" data-html="true" data-trigger="click" title='Enables sharing of the savegame you uploaded by <b>all</b> users. Can be turned off any time!<br><form action="{{data.url}}/enable-dl" method="post"><button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link">Enable!</button></form>'>enable savegame sharing</button>
+                            </p>
+                        {% elif claimable or deletable %}
+                            <p class="text-center">
+                                To enable savegame sharing please first{%if not logged_in()%} <a href="{{url_for('signup')}}">sign up</a> or <a href="{{url_for('login')}}">sign in</a>, then{%endif%} claim this page.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row center-block">
+                <div class="col-md-8 col-sm-12 panel">
+                    <div class="interiorpanel">
+                        <div class="col-md-12 text-center">
+                            <h3>Friendships</h3>
+                        </div>
+                        {% for i in friendships %}
+                            <div class="npc-container text-center">
+                                <button type="button" class="btn-link npc-button" data-animation="false" data-toggle="tooltip" data-container="body" data-placement="auto" data-html="true" title='<img src="{{url_for('static',filename='assets/npcs/'+i.0+'.png')}}"><br>{{i.0}}: {{ i.1 // 250 }}/10'>
+                                    <div class="npc-profile npc-{{i.1//250}}">
+                                        <img class="img-responsive" src="{{url_for('static',filename='assets/npc_icon/'+i.0+'.png')}}">
+                                    </div>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
 
-				{% set monster_dict = {'Armored Bug':['Armored Bug','armored_bug.png'],
-										'Bat':['Bat','bat.png'],
-										'Big Slime':['Big Slime','big_slime.png'],
-										'Bug':['Bug','bug.png'],
-										'Duggy':['Duggy','duggy.png'],
-										'Dust Spirit':['Dust Sprite','dust_spirit.png'],
-										'Fly':['Fly','fly.png'],
-										'Frost Bat':['Frost Bat','frost_bat.png'],
-										'Frost Jelly':['Frost Jelly','frost_jelly.png'],
-										'Ghost':['Ghost','ghost.png'],
-										'Green Slime':['Green Slime','green_slime.png'],
-										'Grub':['Grub','grub.png'],
-										'Lava Bat':['Lava Bat','lava_bat.png'],
-										'Lava Crab':['Lava Crab','lava_crab.png'],
-										'Metal Head':['Metal Head','metal_head.png'],
-										'Mummy':['Mummy','mummy.png'],
-										'Purple Slime':['Purple Slime','purple_slime.png'],
-										'Red Slime':['Sludge','red_slime.png'],
-										'Rock Crab':['Rock Crab','rock_crab.png'],
-										'Serpent':['Serpent','serpent.png'],
-										'Shadow Brute':['Shadow Brute','shadow_brute.png'],
-										'Skeleton':['Skeleton','skeleton.png'],
-										'Squid Kid':['Squid Kid','squid_kid.png'],
-										'Stone Golem':['Stone Golem','stone_golem.png'],
-										'Transparent Slime':['Transparent Slime','transparent_slime.png'],
-										'Shadow Shaman':['Void Spirit','void_spirit.png'],
-										'Sludge':['Yellow Slime','yellow_slime.png']} %}
+                {% set monster_dict = {'Armored Bug':['Armored Bug','armored_bug.png'],
+                                        'Bat':['Bat','bat.png'],
+                                        'Big Slime':['Big Slime','big_slime.png'],
+                                        'Bug':['Bug','bug.png'],
+                                        'Duggy':['Duggy','duggy.png'],
+                                        'Dust Spirit':['Dust Sprite','dust_spirit.png'],
+                                        'Fly':['Fly','fly.png'],
+                                        'Frost Bat':['Frost Bat','frost_bat.png'],
+                                        'Frost Jelly':['Frost Jelly','frost_jelly.png'],
+                                        'Ghost':['Ghost','ghost.png'],
+                                        'Green Slime':['Green Slime','green_slime.png'],
+                                        'Grub':['Grub','grub.png'],
+                                        'Lava Bat':['Lava Bat','lava_bat.png'],
+                                        'Lava Crab':['Lava Crab','lava_crab.png'],
+                                        'Metal Head':['Metal Head','metal_head.png'],
+                                        'Mummy':['Mummy','mummy.png'],
+                                        'Purple Slime':['Purple Slime','purple_slime.png'],
+                                        'Red Slime':['Sludge','red_slime.png'],
+                                        'Rock Crab':['Rock Crab','rock_crab.png'],
+                                        'Serpent':['Serpent','serpent.png'],
+                                        'Shadow Brute':['Shadow Brute','shadow_brute.png'],
+                                        'Skeleton':['Skeleton','skeleton.png'],
+                                        'Squid Kid':['Squid Kid','squid_kid.png'],
+                                        'Stone Golem':['Stone Golem','stone_golem.png'],
+                                        'Transparent Slime':['Transparent Slime','transparent_slime.png'],
+                                        'Shadow Shaman':['Void Spirit','void_spirit.png'],
+                                        'Sludge':['Yellow Slime','yellow_slime.png']} %}
 
-				<div class="col-md-4 panel">
-					<div class="interiorpanel text-center">
-						<h3>Monster Kills</h3>
-						<div id="stats">
-						{% if kills %}
-							{% for kill in kills %}
-							<div class="monster-container text-center">
-								<button type="button" class="btn-link monster-button" data-animation="false" data-toggle="tooltip" data-container="body" data-placement="auto" data-html="true" title='{{monster_dict[kill.0][0]}}: {{ kill.1 }}'>
-									<div class="monster-profile">						
-										<img class="img-responsive" src="{{url_for('static',filename='assets/monsters/'+monster_dict[kill.0][1])}}">
-									</div>
-								</button>
-							</div>
-							{% endfor %}
-						{% else %}
-							<p> {{ data.name }} has not killed any monsters yet. </p>
-						{% endif %}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row center-block panel">
-				<a name="mainFarm"></a>
-				<div class="interiorpanel">
-					<div class="col-md-12 text-center">
-						<h3>Map of {{data.farmName}} Farm</h3>
+                <div class="col-md-4 panel">
+                    <div class="interiorpanel text-center">
+                        <h3>Monster Kills</h3>
+                        <div id="stats">
+                        {% if kills %}
+                            {% for kill in kills %}
+                            <div class="monster-container text-center">
+                                <button type="button" class="btn-link monster-button" data-animation="false" data-toggle="tooltip" data-container="body" data-placement="auto" data-html="true" title='{{monster_dict[kill.0][0]}}: {{ kill.1 }}'>
+                                    <div class="monster-profile">
+                                        <img class="img-responsive" src="{{url_for('static',filename='assets/monsters/'+monster_dict[kill.0][1])}}">
+                                    </div>
+                                </button>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p> {{ data.name }} has not killed any monsters yet. </p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row center-block panel">
+                <a name="mainFarm"></a>
+                <div class="interiorpanel">
+                    <div class="col-md-12 text-center">
+                        <h3>Map of {{data.farmName}} Farm</h3>
 
-						<div class="previewbox">
-							<div class="previewimage">
-								<a href="{{ url_for('static', filename='images/'+data.url+'/map.png') }}" target="_blank"><img src="{{ url_for('static', filename='images/'+data.url+'/map.png') }}" class="img-responsive farmImg" height="auto"></a>
-							</div>
-							<div class="maptextbase">
-								{% if data['imgur_json'] != None %}
-									<div class="maptextinsert">
-										<span class="buttoncompensation"><a class="btn-link" href="{{data['imgur_json']['imgur_url']}}">view on imgur</a></span>
-									</div>
-								{% endif %}
-								{%if logged_in() and session['logged_in_user'][0] == data.owner_id %}
-									<div class="maptextinsert">
-										<form action="/{{data.url}}/imgur" method="post">
-											<button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link disabled">
-												{% if data['imgur_json'] != None %}re{%endif%}upload to imgur
-											</button>
-										</form>
-									</div>
-								{%endif%}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endblock %}
+                        <div class="previewbox">
+                            <div class="previewimage">
+                                <a href="{{ url_for('static', filename='images/'+data.url+'/map.png') }}" target="_blank"><img src="{{ url_for('static', filename='images/'+data.url+'/map.png') }}" class="img-responsive farmImg" height="auto"></a>
+                            </div>
+                            <div class="maptextbase">
+                                {% if data['imgur_json'] != None %}
+                                    <div class="maptextinsert">
+                                        <span class="buttoncompensation"><a class="btn-link" href="{{data['imgur_json']['imgur_url']}}">view on imgur</a></span>
+                                    </div>
+                                {% endif %}
+                                {%if logged_in() and session['logged_in_user'][0] == data.owner_id %}
+                                    <div class="maptextinsert">
+                                        <form action="/{{data.url}}/imgur" method="post">
+                                            <button type="submit" name="strangerdanger" value="strangerdanger" class="btn-link disabled">
+                                                {% if data['imgur_json'] != None %}re{%endif%}upload to imgur
+                                            </button>
+                                        </form>
+                                    </div>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

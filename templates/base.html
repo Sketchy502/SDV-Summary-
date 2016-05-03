@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Article">
-	<head>
-		<title>{% block title %}upload.farm Stardew Valley Summary Generator{% endblock %}</title>
-		{% block header %}
-		
-		<!-- Load Things -->
-		<link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='icon/apple-touch-icon-57x57.png') }}">
-		<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='icon/apple-touch-icon-60x60.png') }}">
-		<link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='icon/apple-touch-icon-72x72.png') }}">
-		<link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='icon/apple-touch-icon-76x76.png') }}">
-		<link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='icon/apple-touch-icon-114x114.png') }}">
-		<link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename='icon/apple-touch-icon-120x120.png') }}">
-		<link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-32x32.png') }}" sizes="32x32">
-		<link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-96x96.png') }}" sizes="96x96">
-		<link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-16x16.png') }}" sizes="16x16">
-		<link rel="manifest" href="{{ url_for('static', filename='icon/manifest.json') }}">
-		<link rel="mask-icon" href="{{ url_for('static', filename='icon/safari-pinned-tab.svg') }}" color="#5bbad5">
-		<link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
-		<meta name="msapplication-TileColor" content="#ffcb7b">
-		<meta name="msapplication-config" content="{{ url_for('static', filename='icon/browserconfig.xml') }}">
-		<meta name="theme-color" content="#84a4f0">
-		<!-- Thanks to http://realfavicongenerator.net/ for the favicons -->
+    <head>
+        <title>{% block title %}upload.farm Stardew Valley Summary Generator{% endblock %}</title>
+        {% block header %}
 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<!-- Load Style Sheets -->
-		<link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" media="screen">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!-- Load Things -->
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='icon/apple-touch-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='icon/apple-touch-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='icon/apple-touch-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='icon/apple-touch-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='icon/apple-touch-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename='icon/apple-touch-icon-120x120.png') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-32x32.png') }}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-96x96.png') }}" sizes="96x96">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon/favicon-16x16.png') }}" sizes="16x16">
+        <link rel="manifest" href="{{ url_for('static', filename='icon/manifest.json') }}">
+        <link rel="mask-icon" href="{{ url_for('static', filename='icon/safari-pinned-tab.svg') }}" color="#5bbad5">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+        <meta name="msapplication-TileColor" content="#ffcb7b">
+        <meta name="msapplication-config" content="{{ url_for('static', filename='icon/browserconfig.xml') }}">
+        <meta name="theme-color" content="#84a4f0">
+        <!-- Thanks to http://realfavicongenerator.net/ for the favicons -->
 
-		<!-- Load External Fonts -->
-		<link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- Load JS libraries -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+        <!-- Load Style Sheets -->
+        <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-		<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-		<script type="text/javascript">
-		    window.cookieconsent_options = {"message":"This website uses cookies when you upload a savegame to determine ownership","dismiss":"Okay!","learnMore":"More info","link":"","theme":"dark-bottom"};
-		</script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-		<!-- End Cookie Consent plugin -->
-		
-		{% endblock %}
-		{% include "analytics.html" %}
-	</head>
-	<body>
-		<div class="container">
-			{%block bodycontent %}
+        <!-- Load External Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
-			{% endblock %}
-			<div class="row panel center-block text-center">
-				<div class="interiorpanel">
-				<p class="text-muted">Took {{ processtime }} seconds to process request | source at <a href="https://github.com/Sketchy502/SDV-Summary">GitHub</a><br>All Stardew Valley assets copyright <a href="http://twitter.com/concernedape">Concerned Ape</a></p>
-				</div>
-			</div>
-		</div>
-	</body>
+        <!-- Load JS libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+        <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+        <script type="text/javascript">
+            window.cookieconsent_options = {"message":"This website uses cookies when you upload a savegame to determine ownership","dismiss":"Okay!","learnMore":"More info","link":"","theme":"dark-bottom"};
+        </script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+        <!-- End Cookie Consent plugin -->
+
+        {% endblock %}
+        {% include "analytics.html" %}
+    </head>
+    <body>
+        <div class="container">
+            {%block bodycontent %}
+
+            {% endblock %}
+            <div class="row panel center-block text-center">
+                <div class="interiorpanel">
+                <p class="text-muted">Took {{ processtime }} seconds to process request | source at <a href="https://github.com/Sketchy502/SDV-Summary">GitHub</a><br>All Stardew Valley assets copyright <a href="http://twitter.com/concernedape">Concerned Ape</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

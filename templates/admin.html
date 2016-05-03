@@ -1,40 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Admin login{% endblock %}
 {% block bodycontent %}
-			<div class="row panel">
-				<div class="interiorpanel">
-					<div class="col-md-8">
-						<h1>Admin Access</h1>
-					</div>
-				<div class="col-md-4 text-right">
-					{% if error %}
-						<p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
-					{% endif %}
-				</div>
-				{% with messages = get_flashed_messages() %}
-					{% if messages %}
-						<div class="row">
-						{% for message in messages %}
-							<p>{{ message }}</p>
-						{% endfor %}
-						</div>
-					{% endif %}
-				{% endwith %}
-				</div>
-			</div>
-			<div class="row panel">
-				<div class="interiorpanel">
-					<form action="" method="post">
-						<div class="col-md-5 col-sm-12">
-							<input class="form-control input-lg" type="text" name="username" value="" placeholder="username">
-						</div>
-						<div class="col-md-5 col-sm-12">
-							<input class="form-control input-lg" type="password" name="password" value="" placeholder="password">
-						</div>
-						<div class="col-md-2 col-sm-2">
-							<input class="btn btn-primary btn-lg" type="submit" value="Login">
-						</div>
-					</form>
-				</div>
-			</div>
+            <div class="row panel">
+                <div class="interiorpanel">
+                    <div class="col-md-8">
+                        <h1>Admin Access</h1>
+                    </div>
+                <div class="col-md-4 text-right">
+                    {% if error %}
+                        <p class="text-danger text-center"><strong>Error:</strong> {{ error }}</p>
+                    {% endif %}
+                </div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="row">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                </div>
+            </div>
+            <div class="row panel">
+                <div class="interiorpanel">
+                    <form action="" method="post">
+                        <div class="col-md-5 col-sm-12">
+                            <input class="form-control input-lg" type="text" name="username" value="" placeholder="username">
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <input class="form-control input-lg" type="password" name="password" value="" placeholder="password">
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
 {% endblock %}

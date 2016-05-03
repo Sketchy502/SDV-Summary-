@@ -3,31 +3,31 @@
 {%block bodycontent %}
 {% include "titlebar.html" %}
 <div class="row center-block panel">
-	<div class="interiorpanel">
-		<div class="hidden-xs"><h2>Frequently Asked Questions</h2></div>
-		<div class="hidden-sm hidden-md hidden-lg"><h2>FAQ</h2></div>
-		<dl class="faq">
-		<dt>What does this site do?</dt>
-		<dd>It generates a map and summary of a Stardew Valley farm, with your player avatar and portrait of your family. It's an alternative to screenshot tools like <a href="http://blog.metaclassofnil.com/?page_id=582">GeDoSaTo</a>.</dd>
-		<dt>Where do I find the savegame?</dt>
-		<dd>Savegames are in <code>%APPDATA%\StardewValley\Saves</code>. This can be pasted into the file upload box to find the correct folder. Within this are subfolders for individual savegames. The file you should upload is named after your player (i.e. not named SaveGameInfo).</dd>
-		<dt>Why register for an upload.farm account?</dt>
-		<dd>To add <a href="#whysignin">certain features such as savegame sharing</a> to the site it became necessary to introduce user accounts, so that page ownership could be established. The up-side of this is that we can add other features to the site very easily. We will shortly be adding upload-to-imgur functions, and the ability to post to reddit, for logged-in users.</dd>
-		<dt>Can I upload multiple farms from the same playthrough?</dt>
-		<dd>Yes. If you are <a href="{{url_for('signup')}}">signed up</a> and <a href="{{url_for('login')}}">logged in</a>, your uploads's series is automatically linked to below the farm name. You can also move between these farms using left and right keyboard keys. If you are not registered, farms are not automatically linked, but if you later choose to register, they can be claimed.</dd>
-		<dt><a name="cantfind"></a>I can't find my farm!</dt>
-		<dd>Re-upload your farm and the site will redirect you to the existing data, and re-set your ownership.</dd>
-		<dt><a name="savegame"></a>How do I enable savegame sharing?</dt>
-		<dd>If you are <a href="{{url_for('signup')}}">signed up</a> and own the page, beneath the minimap is a button to enable savegame sharing. This enables them for <em>all</em> users of the site, and may be enabled or disabled as you like.
-		<dt><a name="whysignin"></a>Why do I have to sign up to enable savegame sharing?</dt>
-		<dd>If other people could download your savegame without you having claimed the page, they could upload it, <a href="#cantfind">take control</a> of it, and then delete it or claim it themselves. So, for the extra functionality, you have to register.</dd>
-		<dt>How do I use downloaded savegames?</dt>
-		<dd>Saves go in <code>%APPDATA%\StardewValley\Saves</code> where you can place the extracted folder and contents. This is normally <br>C:\Users\[Windows&nbsp;login]\AppData\Roaming\StardewValley\Saves.</dd>
-		<dt>How can I delete my upload(s)?</dt>
-		<dd>When you upload a savegame a cookie is set to indicate ownership. Below the farm name should be a "delete this page" button. If you are <a href="{{url_for('login')}}">logged in</a> and have uploaded multiple farms from the same playthrough you will also have an option to delete "all for this farm". Both ask for confirmation before deleting.</dd>
-		<dt>Do you support [modname]?</dt>
-		<dd>At present we don't explicitly support any mods, but mods that don't add new assets or structurally change your savegame too much will probably work. Once we've got the core site functionality sorted we'll look at mod support!</dd>
-		</dl>
-	</div>
+    <div class="interiorpanel">
+        <div class="hidden-xs"><h2>Frequently Asked Questions</h2></div>
+        <div class="hidden-sm hidden-md hidden-lg"><h2>FAQ</h2></div>
+        <dl class="faq">
+        <dt>What does this site do?</dt>
+        <dd>It generates a map and summary of a Stardew Valley farm, with your player avatar and portrait of your family. It's an alternative to screenshot tools like <a href="http://blog.metaclassofnil.com/?page_id=582">GeDoSaTo</a>.</dd>
+        <dt>Where do I find the savegame?</dt>
+        <dd>Savegames are in <code>%APPDATA%\StardewValley\Saves</code>. This can be pasted into the file upload box to find the correct folder. Within this are subfolders for individual savegames. The file you should upload is named after your player (i.e. not named SaveGameInfo).</dd>
+        <dt>Why register for an upload.farm account?</dt>
+        <dd>To add <a href="#whysignin">certain features such as savegame sharing</a> to the site it became necessary to introduce user accounts, so that page ownership could be established. The up-side of this is that we can add other features to the site very easily. We will shortly be adding upload-to-imgur functions, and the ability to post to reddit, for logged-in users.</dd>
+        <dt>Can I upload multiple farms from the same playthrough?</dt>
+        <dd>Yes. If you are <a href="{{url_for('signup')}}">signed up</a> and <a href="{{url_for('login')}}">logged in</a>, your uploads's series is automatically linked to below the farm name. You can also move between these farms using left and right keyboard keys. If you are not registered, farms are not automatically linked, but if you later choose to register, they can be claimed.</dd>
+        <dt><a name="cantfind"></a>I can't find my farm!</dt>
+        <dd>Re-upload your farm and the site will redirect you to the existing data, and re-set your ownership.</dd>
+        <dt><a name="savegame"></a>How do I enable savegame sharing?</dt>
+        <dd>If you are <a href="{{url_for('signup')}}">signed up</a> and own the page, beneath the minimap is a button to enable savegame sharing. This enables them for <em>all</em> users of the site, and may be enabled or disabled as you like.
+        <dt><a name="whysignin"></a>Why do I have to sign up to enable savegame sharing?</dt>
+        <dd>If other people could download your savegame without you having claimed the page, they could upload it, <a href="#cantfind">take control</a> of it, and then delete it or claim it themselves. So, for the extra functionality, you have to register.</dd>
+        <dt>How do I use downloaded savegames?</dt>
+        <dd>Saves go in <code>%APPDATA%\StardewValley\Saves</code> where you can place the extracted folder and contents. This is normally <br>C:\Users\[Windows&nbsp;login]\AppData\Roaming\StardewValley\Saves.</dd>
+        <dt>How can I delete my upload(s)?</dt>
+        <dd>When you upload a savegame a cookie is set to indicate ownership. Below the farm name should be a "delete this page" button. If you are <a href="{{url_for('login')}}">logged in</a> and have uploaded multiple farms from the same playthrough you will also have an option to delete "all for this farm". Both ask for confirmation before deleting.</dd>
+        <dt>Do you support [modname]?</dt>
+        <dd>At present we don't explicitly support any mods, but mods that don't add new assets or structurally change your savegame too much will probably work. Once we've got the core site functionality sorted we'll look at mod support!</dd>
+        </dl>
+    </div>
 </div>
 {% endblock %}

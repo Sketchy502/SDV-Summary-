@@ -143,7 +143,7 @@ def generateFarm(season, farm, assets=None):
 
     farm_base = Image.new('RGBA', (1280, 1040))
     farm_base.paste(assets['base'][season], (0, 0))
-    
+
     # seed the random number generator so we render the same way every time
     random.seed(0)
 
