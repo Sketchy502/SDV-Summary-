@@ -137,7 +137,7 @@ def generateFarm(season, farm, assets=None):
 
     farm_base = Image.new('RGBA', (1280, 1040))
     farm_base.paste(assets['base'][season]["Back"], (0, 0))
-    farm_base.paste(assets['base'][season]["Buildings"], (0, 0), mask=assets['base'][season]["Buildings"])
+    farm_base = Image.alpha_composite(farm_base, assets['base'][season]["Buildings"])
 
     # seed the random number generator so we render the same way every time
     random.seed(0)
@@ -339,8 +339,8 @@ def generateFarm(season, farm, assets=None):
         except Exception as e:
                 print(e)
 
-    farm_base.paste(assets['base'][season]["Front"], (0, 0), mask=assets['base'][season]["Front"])
-    farm_base.paste(assets['base'][season]["AlwaysFront"], (0, 0), mask=assets['base'][season]["AlwaysFront"])
+    farm_base = Image.alpha_composite(farm_base, assets['base'][season]["Front"])
+    farm_base = Image.alpha_composite(farm_base, assets['base'][season]["AlwaysFront"])
 
     farm_base = farm_base.convert('RGBA').convert('P', palette=Image.ADAPTIVE, colors=255)
     return farm_base
