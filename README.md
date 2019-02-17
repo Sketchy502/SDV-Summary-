@@ -90,12 +90,6 @@ SDV_APP_SETTINGS=development python sdv/createdb.py
 
 To run, the templating engine jinja2 needs `sdv\templates\analytics.html` to exist.
 
-Run the app using Flask:
-
-```bash
-SDV_APP_SETTINGS=development FLASK_APP=runserver.py flask run
-```
-
 You need a copy of Stardew Valley so you can extract its asset files using a tool
 like [LeonBlade/xnbcli](https://github.com/LeonBlade/xnbcli). See also
 [the Stardew Valley wiki](https://stardewvalleywiki.com/Modding:Editing_XNB_files#Unpack_.26_pack_game_files)
@@ -155,6 +149,12 @@ SDV_APP_SETTINGS=development python sdv/copyUnpackedAssets.py ~/xnbcli-master/un
 
 **Note:** the copyUnpackedAssets.py script isn't finished yet, so it will only copy
 a few of the asset files to the location SDV-Summary expects. Pull requests welcome!
+
+Once you have all the asset files in place, run the app using Flask:
+
+```bash
+SDV_APP_SETTINGS=development FLASK_APP=runserver.py flask run
+```
 
 ## Acknowledgements
 
