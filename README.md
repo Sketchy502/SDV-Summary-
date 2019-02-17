@@ -143,6 +143,19 @@ SDV_APP_SETTINGS=development python sdv/makeAssetDirectories.py
 # Or, for Python 3: SDV_APP_SETTINGS=development python3 sdv/makeAssetDirectories.py
 ```
 
+Once you have the right directory structure for assets, you can start copying unpacked
+assets into the right SDV-Summary locations:
+
+```bash
+# SDV_APP_SETTINGS=development python sdv/copyUnpackedAssets.py <path to xnbcli's unpacked directory>
+# Or, for Python 3: SDV_APP_SETTINGS=development python3 sdv/copyUnpackedAssets.py <path to xnbcli's unpacked directory>
+# Example:
+SDV_APP_SETTINGS=development python sdv/copyUnpackedAssets.py ~/xnbcli-master/unpacked
+```
+
+**Note:** the copyUnpackedAssets.py script isn't finished yet, so it will only copy
+a few of the asset files to the location SDV-Summary expects. Pull requests welcome!
+
 ## Acknowledgements
 
 Thank you to our translators, specifically:
