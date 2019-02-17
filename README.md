@@ -97,7 +97,9 @@ SDV_APP_SETTINGS=development FLASK_APP=runserver.py flask run
 ```
 
 You need a copy of Stardew Valley so you can extract its asset files using a tool
-like [LeonBlade/xnbcli](https://github.com/LeonBlade/xnbcli).
+like [LeonBlade/xnbcli](https://github.com/LeonBlade/xnbcli). See also
+[the Stardew Valley wiki](https://stardewvalleywiki.com/Modding:Editing_XNB_files#Unpack_.26_pack_game_files)
+for information about unpacking xnb files to access the png images.
 
 Assets for image generation go in `sdv\assets\[subfolder]`. Assets used as-is go in `sdv\static\assets\[subfolder]`.
 
