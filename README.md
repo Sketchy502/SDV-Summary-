@@ -91,7 +91,7 @@ To run, the templating engine jinja2 needs `sdv\templates\analytics.html` to exi
 Run the app using Flask:
 
 ```bash
-FLASK_APP=runserver.py flask run
+SDV_APP_SETTINGS=development FLASK_APP=runserver.py flask run
 ```
 
 Assets for image generation go in `sdv\assets\[subfolder]`. Assets used as-is go in `sdv\static\assets\[subfolder]`.
