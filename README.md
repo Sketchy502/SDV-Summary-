@@ -136,6 +136,13 @@ Success 2039
 Fail 0
 ```
 
+You can generate SDV-Summary's expected asset directory structure via:
+
+```bash
+SDV_APP_SETTINGS=development python sdv/makeAssetDirectories.py
+# Or, for Python 3: SDV_APP_SETTINGS=development python3 sdv/makeAssetDirectories.py
+```
+
 ## Acknowledgements
 
 Thank you to our translators, specifically:
