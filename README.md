@@ -103,6 +103,39 @@ for information about unpacking xnb files to access the png images.
 
 Assets for image generation go in `sdv\assets\[subfolder]`. Assets used as-is go in `sdv\static\assets\[subfolder]`.
 
+Using LeonBlade/xnbcli, you can unpack Stardew Valley xnbs by copying them from the
+game's installation directory to the packed/ directory from xnbcli. For example,
+on macOS with Stardew Valley installed via Steam, your xnb files are here:
+
+```bash
+cd ~/Library/Application\ Support/Steam/steamapps/common/Stardew\ Valley/Contents/Resources/Content
+open . # to open this location in a Finder window
+```
+
+Copy everything from the Content/ directory into xnbcli's packed/ directory. Then,
+to run xnbcli:
+
+```bash
+# From the xnbcli directory:
+npm install
+npm run unpack
+```
+
+This process will take a while but should hopefully end with a bunch of new pngs and
+JSON files in xnbcli's unpacked/ directory. The script should finish with output like
+this:
+
+```
+[INFO] Reading file "packed/Animals/horse.xnb" ...
+[INFO] XNB file validated successfully!
+[INFO] File has been successfully decompressed!
+[INFO] Successfuly read XNB file!
+[INFO] Exporting Texture2D ...
+[INFO] Output file saved: unpacked/Animals/horse.json
+Success 2039
+Fail 0
+```
+
 ## Acknowledgements
 
 Thank you to our translators, specifically:
