@@ -96,6 +96,9 @@ Run the app using Flask:
 SDV_APP_SETTINGS=development FLASK_APP=runserver.py flask run
 ```
 
+You need a copy of Stardew Valley so you can extract its asset files using a tool
+like [LeonBlade/xnbcli](https://github.com/LeonBlade/xnbcli).
+
 Assets for image generation go in `sdv\assets\[subfolder]`. Assets used as-is go in `sdv\static\assets\[subfolder]`.
 
 ## Acknowledgements
