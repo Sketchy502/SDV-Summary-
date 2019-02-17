@@ -56,10 +56,11 @@ As per flask-mail docs and your email server
 
 ## Initialization
 
-Install prerequisites using a tool like [pip](https://pypi.org/project/pip/) (`pip3` if you're using Python 3) by running the following command from the root directory:
+Install prerequisites using a tool like [pip](https://pypi.org/project/pip/) by running the following command from the root directory:
 
 ```bash
 pip install -r requirements.txt
+# Or, for Python 3: pip3 install -r requirements.txt
 ```
 
 You need PostgreSQL installed and running. Then create a database:
@@ -80,7 +81,9 @@ Once the config file has been written, run createadmin.py and createdb.py and fo
 
 ```bash
 SDV_APP_SETTINGS=development python sdv/createadmin.py
+# Or, for Python 3: SDV_APP_SETTINGS=development python3 sdv/createadmin.py
 SDV_APP_SETTINGS=development python sdv/createdb.py
+# Or, for Python 3: SDV_APP_SETTINGS=development python3 sdv/createdb.py
 ```
 
 To run, the templating engine jinja2 needs `sdv\templates\analytics.html` to exist.
