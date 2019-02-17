@@ -34,6 +34,8 @@ A Flask webapp using Python Image Library to reconstruct and display a summary o
 
 `DEBUG` set to True for helpful debugging; never set to True in production environment
 
+`ASSET_PATH` a path to a directory for assets for the app
+
 #### Database
 
 `USE_SQLITE` NOTE: in testing we've moved to Postgres, so this probably doesn't work any more
