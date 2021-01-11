@@ -9,7 +9,7 @@ cffi==1.11.5
 chardet==3.0.4
 Click==7.0
 colorama==0.3.9
-cryptography==2.3.1
+cryptography==3.2
 defusedxml==0.5.0
 Fabric3==1.14.post1
 Flask==1.0.2
