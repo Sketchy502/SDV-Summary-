@@ -735,12 +735,12 @@ p.cc_message {
 
     border-radius: 30px;
     border-style: solid;
-    border-width: 21px 21px 21px 21px;
+    border-width: 21px;
 
-    -moz-border-image: url(textBox.png) 30 30 30 30 stretch;
-    -webkit-border-image: url(textBox.png) 30 30 30 30 stretch;
-    -o-border-image: url(textBox.png) 30 30 30 30 stretch;
-    border-image: url(textBox.png) 30 30 30 30 fill stretch;
+    -moz-border-image: url(textBox.png) 30 fill repeat;
+    -webkit-border-image: url(textBox.png) 30 fill repeat;
+    -o-border-image: url(textBox.png) 30 fill repeat;
+    border-image: url(textBox.png) 30 fill repeat;
 
     transition: margin-left 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
