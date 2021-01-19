@@ -6,6 +6,7 @@ class DevelopmentConfig():
   DB_NAME = 'sdv_summary_development'
   DB_USER = ''
   DB_PASSWORD = ''
+  ASSET_PATH = 'sdv/assets'
 
 config = {
   'development': DevelopmentConfig
