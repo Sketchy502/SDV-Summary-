@@ -387,43 +387,44 @@ def generateFarm(season, data, assets=None):
                     print(e)
 
             if item.name == "Building":
-                try:
-                    if item.type.lower() == "junimo hut":
-                        offsety = (
-                            assets["buildings"][item.type.lower()][season].height
-                            - (item.h) * 16
-                        )
-                        farm_base.paste(
-                            assets["buildings"][item.type.lower()][season],
-                            (item.x * 16, item.y * 16 - offsety),
-                            assets["buildings"][item.type.lower()][season],
-                        )
-                    elif item.type.lower() == "fish pond":
-                        pond_image = render_fish_pond(item, assets)
-                        pond_offset_y = 2 * 16
-                        farm_base.paste(
-                            pond_image,
-                            (item.x * 16, item.y * 16 - pond_offset_y),
-                            pond_image,
-                        )
-                    else:
-                        offsety = (
-                            assets["buildings"][item.type.lower()].height
-                            - (item.h) * 16
-                        )
-                        asset = assets["buildings"][item.type.lower()]
-                        if "cabin" in item.type.lower():
-                            asset = cropImg(
-                                asset,
-                                item.orientation,
-                                (item.w * 16, asset.height),
-                                (item.w * 16, asset.height),
+                if item.type != "Greenhouse":
+                    try:
+                        if item.type.lower() == "junimo hut":
+                            offsety = (
+                                assets["buildings"][item.type.lower()][season].height
+                                - (item.h) * 16
                             )
-                        farm_base.paste(
-                            asset, (item.x * 16, item.y * 16 - offsety), asset
-                        )
-                except Exception as e:
-                    print(e)
+                            farm_base.paste(
+                                assets["buildings"][item.type.lower()][season],
+                                (item.x * 16, item.y * 16 - offsety),
+                                assets["buildings"][item.type.lower()][season],
+                            )
+                        elif item.type.lower() == "fish pond":
+                            pond_image = render_fish_pond(item, assets)
+                            pond_offset_y = 2 * 16
+                            farm_base.paste(
+                                pond_image,
+                                (item.x * 16, item.y * 16 - pond_offset_y),
+                                pond_image,
+                            )
+                        else:
+                            offsety = (
+                                assets["buildings"][item.type.lower()].height
+                                - (item.h) * 16
+                            )
+                            asset = assets["buildings"][item.type.lower()]
+                            if "cabin" in item.type.lower():
+                                asset = cropImg(
+                                    asset,
+                                    item.orientation,
+                                    (item.w * 16, asset.height),
+                                    (item.w * 16, asset.height),
+                                )
+                            farm_base.paste(
+                                asset, (item.x * 16, item.y * 16 - offsety), asset
+                            )
+                    except Exception as e:
+                        print(e)
 
             if item.name == "spouse_area":
                 sprite = assets["spouseArea"][spouse][season]
@@ -466,7 +467,7 @@ def generateFarm(season, data, assets=None):
                 except Exception as e:
                     print(e)
 
-            if item.name == "Greenhouse":
+            if item.name == "Greenhouse" or item.type == "Greenhouse":
                 try:
                     greenhouse_img = cropImg(
                         assets["buildings"]["greenhouse"],

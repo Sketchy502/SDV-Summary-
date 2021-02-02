@@ -83,6 +83,9 @@ def getFarmInfo(saveFile):
 
     root = saveFile.getRoot()
 
+    # This is a crude flag to prevent two greenhouses from being registered in version 1.5
+    seen_greenhouse = False
+
     # Farm Objects
 
     s = []
@@ -286,6 +289,7 @@ def getFarmInfo(saveFile):
         h = int(item.find("tilesHigh").text)
         t = item.find("buildingType").text
         o = None
+        index = 0
         if "cabin" in t.lower():
             try:
                 o = min(
@@ -320,7 +324,30 @@ def getFarmInfo(saveFile):
                 "has_output": has_output,
             }
 
-        s.append(sprite(name, x, y, w, h, None, t, None, None, o))
+        if t.lower() == "greenhouse":
+            seen_greenhouse = True
+            hasGreenhouse = False
+            try:
+                community_center = get_location(root, "CommunityCenter")
+                cats = community_center.find("areasComplete").findall("boolean")
+                if cats[0].text == "true":
+                    hasGreenhouse = True
+            except AttributeError:
+                pass
+
+            # Check for letter to confirm player has unlocked greenhouse, thanks /u/BumbleBHE
+            for letter in root.find("player").find("mailReceived").iter("string"):
+                if letter.text == "ccPantry":
+                    hasGreenhouse = True
+
+            hasGreenhouse |= farm_location.find("greenhouseUnlocked") == "true"
+
+            index = 1 if hasGreenhouse else 0
+            # Offset of greenhouse is 4 not 6
+            h -= 2
+
+
+        s.append(sprite(name, x, y, w, h, index, t, None, None, o))
 
     farm["buildings"] = s
 
@@ -337,44 +364,45 @@ def getFarmInfo(saveFile):
         None,
     )
 
-    hasGreenhouse = False
-    try:
-        community_center = get_location(root, "CommunityCenter")
-        cats = community_center.find("areasComplete").findall("boolean")
-        if cats[0].text == "true":
-            hasGreenhouse = True
-    except AttributeError:
-        pass
-
-    # Check for letter to confirm player has unlocked greenhouse, thanks /u/BumbleBHE
-    for letter in root.find("player").find("mailReceived").iter("string"):
-        if letter.text == "ccPantry":
-            hasGreenhouse = True
-
     try:
         mapType = int(root.find("whichFarm").text)
     except Exception as e:
         mapType = 0
 
-    if mapType == 5:  # Four Corners
-        greenhouse_x = 36
-        greenhouse_y = 31
-    elif mapType == 6:  # Island
-        greenhouse_x = 14
-        greenhouse_y = 16
-    else:
-        greenhouse_x = 25
-        greenhouse_y = 12
 
-    if hasGreenhouse:
-        greenHouse = sprite(
-            "Greenhouse", greenhouse_x, greenhouse_y, 0, 6, 1, None, None, None, None
+    farm["misc"] = [house]
+
+    if not seen_greenhouse:
+        hasGreenhouse = False
+        try:
+            community_center = get_location(root, "CommunityCenter")
+            cats = community_center.find("areasComplete").findall("boolean")
+            if cats[0].text == "true":
+                hasGreenhouse = True
+        except AttributeError:
+            pass
+
+        # Check for letter to confirm player has unlocked greenhouse, thanks /u/BumbleBHE
+        for letter in root.find("player").find("mailReceived").iter("string"):
+            if letter.text == "ccPantry":
+                hasGreenhouse = True
+
+        if mapType == 5:  # Four Corners
+            greenhouse_x = 36
+            greenhouse_y = 31
+        elif mapType == 6:  # Island
+            greenhouse_x = 14
+            greenhouse_y = 16
+        else:
+            greenhouse_x = 25
+            greenhouse_y = 12
+
+        greenhouse = sprite(
+            "Greenhouse", greenhouse_x, greenhouse_y, 0, 6, 1 if hasGreenhouse else 0, None, None, None, None
         )
-    else:
-        greenHouse = sprite(
-            "Greenhouse", greenhouse_x, greenhouse_y, 0, 6, 0, None, None, None, None
-        )
-    farm["misc"] = [house, greenHouse]
+
+        farm['misc'].append(greenhouse)
+
 
     spouse = get_partner(root.find("player"))
     spouse = spouse.lower() if spouse else None
