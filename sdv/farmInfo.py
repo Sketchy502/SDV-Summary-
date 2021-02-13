@@ -70,10 +70,50 @@ def checkSurrounding(tiles):
 # located on the players farm.
 # returns a dict with an array of tuples of the form: (name, x, y)
 
-sprite = namedtuple(
-    "Sprite",
-    ["name", "x", "y", "w", "h", "index", "type", "growth", "flipped", "orientation"],
-)
+# sprite = namedtuple(
+#     "Sprite",
+#     ["name", "x", "y", "w", "h", "index", "type", "growth", "flipped", "orientation"],
+# )
+class sprite:
+    def __init__(self, name, x, y, w, h, index, type, growth, flipped, orientation):
+        self.name = name
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.index = index
+        self.type = type
+        self.growth = growth
+        self.flipped = flipped
+        self.orientation = orientation
+
+    def __eq__(self, other):
+        if isinstance(other, list):
+            return list(self) == other
+        else:
+            return super().__eq__(other)
+
+    def __iter__(self):
+        return iter((
+            self.name, self.x, self.y, self.w, self.h, self.index,
+            self.type, self.growth, self.flipped, self.orientation
+        ),)
+
+    def __getitem__(self, key):
+        return list(self)[key]
+
+    def __str__(self):
+        return str(list(self))
+
+    def __repr__(self):
+        return repr(list(self))
+
+    def _replace(self, **kwargs):
+        other = sprite(*list(self))
+        for key, value in kwargs.items():
+            other.__dict__[key] = value
+        return other
+
 
 
 def getFarmInfo(saveFile):
@@ -131,6 +171,7 @@ def getFarmInfo(saveFile):
     try:
         farm["Fences"] = checkSurrounding(d["Fence"])
     except Exception as e:
+        print(e)
         pass
 
     farm["objects"] = [a for a in s if a.name != "Fence"]
@@ -170,7 +211,7 @@ def getFarmInfo(saveFile):
                     g = int(crop.find("tintColor").find("G").text)
                     b = int(crop.find("tintColor").find("B").text)
                     days = int(crop.find("dayOfCurrentPhase").text)
-                    o = ((r, g, b), days)
+                    o = [[r, g, b], days]
                 else:
                     o = None
                 crop_flip = False
@@ -463,22 +504,6 @@ def generateImage(data):
 
 
 def regenerateFarmInfo(json_from_db):
-    sprite = namedtuple(
-        "Sprite",
-        [
-            "name",
-            "x",
-            "y",
-            "w",
-            "h",
-            "index",
-            "type",
-            "growth",
-            "flipped",
-            "orientation",
-        ],
-    )
-
     for key in json_from_db["data"].keys():
         for i, item in enumerate(json_from_db["data"][key]):
             json_from_db["data"][key][i] = sprite(*item)

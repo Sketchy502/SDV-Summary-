@@ -6,9 +6,8 @@ import getpass
 from werkzeug import check_password_hash
 from config import config
 
-app = Flask(__name__)
-config_name = os.environ.get("SDV_APP_SETTINGS", None)
-app.config.from_object(config[config_name])
+config_name = os.environ.get("SDV_APP_SETTINGS", 'development')
+configobj = config[config_name]
 
 database_structure_dict = {
     "md5": "TEXT",
@@ -212,7 +211,7 @@ database_structure_dict = {
     "farmhands": "JSONB",
 }
 
-if app.config["USE_SQLITE"] == True:
+if configobj.USE_SQLITE == True:
     database_structure_dict["id"] = "INTEGER PRIMARY KEY AUTOINCREMENT"
     sqlesc = "?"
     idcode = "INTEGER PRIMARY KEY AUTOINCREMENT"
@@ -261,20 +260,20 @@ if sys.version_info >= (3, 0):
 
 
 def connect_db():
-    if app.config["USE_SQLITE"] == True:
+    if configobj.USE_SQLITE == True:
         import sqlite3
 
-        connection = sqlite3.connect(app.config["DB_SQLITE"])
+        connection = sqlite3.connect(configobj.DB_SQLITE)
     else:
         import psycopg2
 
         connection = psycopg2.connect(
             "dbname="
-            + app.config["DB_NAME"]
+            + configobj.DB_NAME
             + " user="
-            + app.config["DB_USER"]
+            + configobj.DB_USER
             + " password="
-            + app.config["DB_PASSWORD"]
+            + configobj.DB_PASSWORD
         )
     return connection
 
@@ -466,7 +465,7 @@ def delete_db():
 
 
 def update_playerinfo():
-    if app.config["USE_SQLITE"] == True:
+    if configobj.USE_SQLITE == True:
         print("This is only for Postgres databases")
         return
     connection = connect_db()
@@ -546,7 +545,7 @@ def update_playerinfo():
 
 
 def update_users():
-    if app.config["USE_SQLITE"] == True:
+    if configobj.USE_SQLITE == True:
         print("This is only for Postgres databases")
         return
     connection = connect_db()

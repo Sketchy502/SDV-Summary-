@@ -1,12 +1,43 @@
 #!/usr/bin/env python
 
 class DevelopmentConfig():
-  DEBUG = True
-  USE_SQLITE = False
-  DB_NAME = 'sdv_summary_development'
-  DB_USER = ''
-  DB_PASSWORD = ''
+
+    # Mandatory settings
+    UPLOAD_FOLDER = 'uploads'
+    SECRET_KEY = 'changeme'
+    MAX_CONTENT_LENGTH = None
+    PASSWORD_ATTEMPTS_LIMIT = None
+    PASSWORD_MIN_LENGTH = 0
+    IMGUR_CLIENTID = ''
+    IMGUR_SECRET = ''
+    IMGUR_DIRECT_UPLOAD = True
+    RECAPTCHA_ENABLED = None
+    RECAPTCHA_SITE_KEY = None
+    RECAPTCHA_SECRET_KEY = None
+    ANALYTICS_ID = ''
+    DEBUG = True
+    ASSET_PATH = 'sdv/assets'
+    LANGUAGES = ['en']
+
+    # Database
+    USE_SQLITE = False
+    DB_NAME = 'sdv_summary_development'
+    DB_USER = ''
+    DB_PASSWORD = ''
+    # NOTE: Leave commented to use unix socket
+    # Or specify Host if DB is not in the same machine
+    # DB_HOST = 'postgres'
+
+    # Mail
+    MAIL_DEFAULT_SENDER = 'info@upload.farm'
+
+
+class TestingConfig(DevelopmentConfig):
+    TESTING = True
+    MAIL_DEFAULT_SENDER = 'info@upload.farm'
+
 
 config = {
-  'development': DevelopmentConfig
+  'development': DevelopmentConfig,
+  'testing': TestingConfig,
 }
