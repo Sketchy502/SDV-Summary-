@@ -29,7 +29,7 @@ idna==2.5
 imgurpython==1.1.7
 invoke==1.2.0
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 more-itertools==4.3.0
 olefile==0.45.1

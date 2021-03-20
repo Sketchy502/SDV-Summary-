@@ -10,7 +10,7 @@ Flask==0.12.1
 future==0.16.0
 idna==2.6
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 macholib==1.9
 MarkupSafe==0.23
 modulegraph==0.16
