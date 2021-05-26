@@ -1,11 +1,32 @@
 #!/usr/bin/env python
 
 class DevelopmentConfig():
-  DEBUG = True
-  USE_SQLITE = False
-  DB_NAME = 'sdv_summary_development'
-  DB_USER = ''
-  DB_PASSWORD = ''
+
+    # Mandatory settings
+    UPLOAD_FOLDER = 'uploads'
+    SECRET_KEY = 'changeme'
+    MAX_CONTENT_LENGTH = 16*1024*1024
+    PASSWORD_ATTEMPTS_LIMIT = None
+    PASSWORD_MIN_LENGTH = 6
+    IMGUR_CLIENTID = ''
+    IMGUR_SECRET = ''
+    IMGUR_DIRECT_UPLOAD = True
+    RECAPTCHA_ENABLED = False
+    RECAPTCHA_SITE_KEY = None
+    RECAPTCHA_SECRET_KEY = None
+    ANALYTICS_ID = ''
+    DEBUG = True
+    ASSET_PATH = 'sdv/assets'
+    LANGUAGES = ['en']
+
+    # Database
+    USE_SQLITE = False
+    DB_NAME = 'sdv_summary_development'
+    DB_USER = 'sdv_summary'
+    DB_PASSWORD = 'sdv_summary'
+    # NOTE: Leave commented to use unix socket
+    # Or specify Host if DB is not in the same machine
+    # DB_HOST = 'postgres'
 
 config = {
   'development': DevelopmentConfig

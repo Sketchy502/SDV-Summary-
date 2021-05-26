@@ -45,6 +45,7 @@ import requests
 
 from sdv.utils.log import app_logger
 from sdv.utils.helpers import random_id
+from sdv.utils.postgres import get_db_connection_string
 
 # from sdv.playerInfo import playerInfo
 from sdv.playerinfo2 import GameInfo
@@ -116,14 +117,9 @@ def create_app(config_name=None):
 
     else:
         logger.info("Application set to use Postgres")
-        app.database = (
-            "dbname="
-            + app.config["DB_NAME"]
-            + " user="
-            + app.config["DB_USER"]
-            + " password="
-            + app.config["DB_PASSWORD"]
-        )
+
+        connstr = get_db_connection_string(app.config)
+        app.database = (connstr)
         app.sqlesc = "%s"
 
     return app

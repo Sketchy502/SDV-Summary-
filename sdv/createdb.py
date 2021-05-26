@@ -5,9 +5,10 @@ import sys
 import getpass
 from werkzeug import check_password_hash
 from config import config
+from sdv.utils.postgres import get_db_connection_string
 
 app = Flask(__name__)
-config_name = os.environ.get("SDV_APP_SETTINGS", None)
+config_name = os.environ.get("SDV_APP_SETTINGS", 'development')
 app.config.from_object(config[config_name])
 
 database_structure_dict = {
@@ -267,15 +268,8 @@ def connect_db():
         connection = sqlite3.connect(app.config["DB_SQLITE"])
     else:
         import psycopg2
-
-        connection = psycopg2.connect(
-            "dbname="
-            + app.config["DB_NAME"]
-            + " user="
-            + app.config["DB_USER"]
-            + " password="
-            + app.config["DB_PASSWORD"]
-        )
+        connstr = get_db_connection_string(app.config)
+        connection = psycopg2.connect(connstr)
     return connection
 
 
