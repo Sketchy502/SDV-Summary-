@@ -104,6 +104,6 @@ sip==4.19.6
 six==1.11.0
 tendo==0.2.8
 tkinter==0.0.0
-urllib3==1.22
+urllib3==1.26.5
 watchdog==0.8.3
 Werkzeug==0.14.1
