@@ -36,7 +36,7 @@ olefile==0.45.1
 paramiko==2.4.2
 passlib==1.7.1
 patreon==0.4.0
-Pillow==4.2.1
+Pillow==8.2.0
 pluggy==0.7.1
 prices==1.0.0
 psycopg2==2.7.4
